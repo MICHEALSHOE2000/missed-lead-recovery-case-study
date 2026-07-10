@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#10211d" flood-opacity=".08"/></filter>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#10211d}.white{fill:#fff}.muted{fill:#60706b}.eyebrow{fill:#0f766e;font-weight:800;font-size:12px;letter-spacing:2px}.title{font-weight:800;font-size:32px}.label{font-size:12px;fill:#60706b;font-weight:600}.value{font-size:31px;font-weight:800}.tiny{font-size:10px}.small{font-size:12px}.medium{font-size:14px;font-weight:700}.bold{font-weight:800}.caps{font-size:10px;fill:#60706b;font-weight:700;letter-spacing:1px}text[fill="#0f766e"]{fill:#0f766e}text[fill="#875000"]{fill:#875000}text[fill="#a9c5bd"]{fill:#a9c5bd}
+    </style>
+  </defs>
+  <rect width="1440" height="900" fill="#f5f3ec"/>
+  <circle cx="1430" cy="-40" r="260" fill="#0f766e" opacity=".07"/>
+  <rect width="1440" height="78" fill="#123a31"/>
+  <rect x="44" y="22" width="34" height="34" rx="10" fill="#d97706"/><text x="61" y="44" text-anchor="middle" class="white bold">↗</text>
+  <text x="92" y="37" class="white medium">Lead Recovery OS</text><text x="92" y="53" fill="#a9c5bd" font-size="10" letter-spacing="1">NORTHSTAR SERVICE CO. · DEMO</text>
+  <rect x="1070" y="22" width="164" height="34" rx="17" fill="#ffffff" opacity=".11"/><text x="1152" y="43" text-anchor="middle" class="white small">● Automation healthy</text>
+  <rect x="1246" y="22" width="112" height="34" rx="17" fill="#ffffff" opacity=".11"/><text x="1302" y="43" text-anchor="middle" class="white small">Sync · 2m ago</text>
+  <circle cx="1382" cy="39" r="17" fill="#e9b45e"/><text x="1382" y="43" text-anchor="middle" font-size="11" font-weight="800">NS</text>
+
+  <text x="44" y="126" class="eyebrow">EXECUTIVE DASHBOARD</text><text x="44" y="166" class="title">Every lead has a next action.</text><text x="44" y="191" class="muted small">30-day performance · Home services · Synthetic portfolio dataset</text>
+  <rect x="1190" y="126" width="206" height="42" rx="10" fill="#fff" stroke="#dfe5df"/><text x="1293" y="152" text-anchor="middle" class="muted small">June 1–30, 2026  ▾</text>
+
+  <g>
+    <rect x="44" y="223" width="326" height="112" rx="16" fill="#fff" stroke="#dfe5df"/><text x="64" y="252" class="label">Total leads captured</text><text x="64" y="303" class="value">184</text><rect x="300" y="277" width="50" height="25" rx="7" fill="#d9efe7"/><text x="325" y="294" text-anchor="middle" fill="#0f766e" class="tiny bold">+18%</text>
+    <rect x="386" y="223" width="326" height="112" rx="16" fill="#fff" stroke="#dfe5df"/><text x="406" y="252" class="label">At-risk leads detected</text><text x="406" y="303" class="value">52</text><rect x="632" y="277" width="60" height="25" rx="7" fill="#fff2d8"/><text x="662" y="294" text-anchor="middle" fill="#875000" class="tiny bold">28.3%</text>
+    <rect x="728" y="223" width="326" height="112" rx="16" fill="#fff" stroke="#dfe5df"/><text x="748" y="252" class="label">Conversations recovered</text><text x="748" y="303" class="value">31</text><rect x="974" y="277" width="60" height="25" rx="7" fill="#d9efe7"/><text x="1004" y="294" text-anchor="middle" fill="#0f766e" class="tiny bold">59.6%</text>
+    <rect x="1070" y="223" width="326" height="112" rx="16" fill="#fff" stroke="#dfe5df"/><text x="1090" y="252" class="label">Bookings recovered</text><text x="1090" y="303" class="value">14</text><rect x="1326" y="277" width="50" height="25" rx="7" fill="#d9efe7"/><text x="1351" y="294" text-anchor="middle" fill="#0f766e" class="tiny bold">9 won</text>
+  </g>
+
+  <g>
+    <rect x="44" y="355" width="845" height="457" rx="16" fill="#fff" stroke="#dfe5df"/><text x="64" y="389" class="medium">Recent recovery activity</text><text x="853" y="389" text-anchor="end" class="muted tiny">VIEW ALL 184 LEADS →</text>
+    <rect x="44" y="407" width="845" height="39" fill="#f7f8f5"/><text x="64" y="432" class="caps">LEAD</text><text x="290" y="432" class="caps">SERVICE</text><text x="445" y="432" class="caps">SOURCE</text><text x="596" y="432" class="caps">STAGE</text><text x="731" y="432" class="caps">NEXT ACTION</text>
+    <g class="small"><line x1="44" y1="511" x2="889" y2="511" stroke="#edf0eb"/><line x1="44" y1="576" x2="889" y2="576" stroke="#edf0eb"/><line x1="44" y1="641" x2="889" y2="641" stroke="#edf0eb"/>
+      <circle cx="77" cy="479" r="15" fill="#dce9e4"/><text x="77" y="483" text-anchor="middle" class="tiny bold">JM</text><text x="103" y="483" class="bold">Jordan M.</text><text x="290" y="483">AC repair</text><text x="445" y="483">Google Ads</text><rect x="596" y="465" width="66" height="27" rx="14" fill="#d9efe7"/><text x="629" y="482" text-anchor="middle" fill="#0f766e" class="tiny bold">BOOKED</text><text x="731" y="483">Tomorrow · 9:00 AM</text>
+      <circle cx="77" cy="544" r="15" fill="#dce9e4"/><text x="77" y="548" text-anchor="middle" class="tiny bold">AK</text><text x="103" y="548" class="bold">Alex K.</text><text x="290" y="548">Water heater</text><text x="445" y="548">Organic</text><rect x="596" y="530" width="66" height="27" rx="14" fill="#fff2d8"/><text x="629" y="547" text-anchor="middle" fill="#875000" class="tiny bold">REPLIED</text><text x="731" y="548">Owner call · 6 min</text>
+      <circle cx="77" cy="609" r="15" fill="#dce9e4"/><text x="77" y="613" text-anchor="middle" class="tiny bold">TS</text><text x="103" y="613" class="bold">Taylor S.</text><text x="290" y="613">Drain service</text><text x="445" y="613">Google LSA</text><rect x="596" y="595" width="78" height="27" rx="14" fill="#fff2d8"/><text x="635" y="612" text-anchor="middle" fill="#875000" class="tiny bold">FOLLOW-UP</text><text x="731" y="613">Nudge · 1 hr 42 min</text>
+      <circle cx="77" cy="674" r="15" fill="#dce9e4"/><text x="77" y="678" text-anchor="middle" class="tiny bold">RB</text><text x="103" y="678" class="bold">Riley B.</text><text x="290" y="678">HVAC quote</text><text x="445" y="678">Referral</text><rect x="596" y="660" width="52" height="27" rx="14" fill="#eef0ed"/><text x="622" y="677" text-anchor="middle" class="tiny bold">NEW</text><text x="731" y="678">Assign owner</text>
+    </g>
+    <text x="64" y="731" class="medium">Recovery funnel</text><text x="853" y="731" text-anchor="end" class="muted tiny">AT-RISK COHORT</text>
+    <g><rect x="64" y="748" width="188" height="46" rx="10" fill="#f6f7f4"/><text x="158" y="770" text-anchor="middle" class="bold">52</text><text x="158" y="785" text-anchor="middle" class="caps">DETECTED</text><rect x="269" y="748" width="188" height="46" rx="10" fill="#f6f7f4"/><text x="363" y="770" text-anchor="middle" class="bold">49</text><text x="363" y="785" text-anchor="middle" class="caps">REACHED</text><rect x="474" y="748" width="188" height="46" rx="10" fill="#f6f7f4"/><text x="568" y="770" text-anchor="middle" class="bold">31</text><text x="568" y="785" text-anchor="middle" class="caps">REPLIED</text><rect x="679" y="748" width="188" height="46" rx="10" fill="#f6f7f4"/><text x="773" y="770" text-anchor="middle" class="bold">14</text><text x="773" y="785" text-anchor="middle" class="caps">BOOKED</text></g>
+  </g>
+
+  <g><rect x="907" y="355" width="489" height="457" rx="16" fill="#fff" stroke="#dfe5df"/><text x="927" y="389" class="medium">Lead sources</text><text x="1376" y="389" text-anchor="end" class="muted tiny">CAPTURED / RECOVERED</text>
+    <g class="small"><text x="927" y="446">Google Ads</text><rect x="1024" y="436" width="275" height="10" rx="5" fill="#edf0ec"/><rect x="1024" y="436" width="226" height="10" rx="5" fill="#0f766e"/><text x="1330" y="446" class="bold">68</text>
+    <text x="927" y="503">Organic</text><rect x="1024" y="493" width="275" height="10" rx="5" fill="#edf0ec"/><rect x="1024" y="493" width="168" height="10" rx="5" fill="#0f766e"/><text x="1330" y="503" class="bold">51</text>
+    <text x="927" y="560">Google LSA</text><rect x="1024" y="550" width="275" height="10" rx="5" fill="#edf0ec"/><rect x="1024" y="550" width="118" height="10" rx="5" fill="#0f766e"/><text x="1330" y="560" class="bold">36</text>
+    <text x="927" y="617">Referral</text><rect x="1024" y="607" width="275" height="10" rx="5" fill="#edf0ec"/><rect x="1024" y="607" width="96" height="10" rx="5" fill="#0f766e"/><text x="1330" y="617" class="bold">29</text></g>
+    <line x1="927" y1="655" x2="1376" y2="655" stroke="#edf0eb"/><text x="927" y="692" class="medium">System health</text><circle cx="939" cy="728" r="6" fill="#21a776"/><text x="954" y="732" class="small">All lead sources connected</text><circle cx="939" cy="768" r="6" fill="#21a776"/><text x="954" y="772" class="small">No unresolved delivery failures</text>
+  </g>
+  <text x="44" y="862" class="muted tiny">Portfolio demo · Fictional business and synthetic data · Not a claim of live client performance</text>
+</svg>

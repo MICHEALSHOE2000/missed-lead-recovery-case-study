@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missed Lead Recovery System — Portfolio Mockups</title>
+  <style>
+    :root {
+      --ink: #10211d;
+      --muted: #60706b;
+      --paper: #f5f3ec;
+      --card: #ffffff;
+      --line: #dfe5df;
+      --green: #123a31;
+      --teal: #0f766e;
+      --mint: #d9efe7;
+      --amber: #d97706;
+      --amber-soft: #fff2d8;
+      --red: #b94b3c;
+      --blue: #386a8c;
+      --shadow: 0 18px 50px rgba(16, 33, 29, .09);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #d7ded9;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .screen {
+      width: 1440px;
+      height: 900px;
+      overflow: hidden;
+      position: relative;
+      background: var(--paper);
+      margin: 0 0 36px;
+    }
+    .screen::before {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      right: -170px;
+      top: -230px;
+      background: rgba(15,118,110,.08);
+    }
+    .topbar {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 44px;
+      background: var(--green);
+      color: white;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 750; letter-spacing: -.02em; }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 10px; background: var(--amber);
+      display: grid; place-items: center; font-size: 17px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+    }
+    .brand small { display: block; opacity: .66; font-size: 11px; margin-top: 2px; letter-spacing: .08em; text-transform: uppercase; }
+    .top-actions { display: flex; gap: 12px; align-items: center; font-size: 13px; }
+    .chip { padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.14); }
+    .avatar { width: 34px; height: 34px; border-radius: 50%; display:grid; place-items:center; background:#e9b45e; color:#2f2413; font-weight:800; }
+    .content { padding: 30px 44px 38px; position: relative; }
+    .eyebrow { color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 5px 0 5px; font-size: 31px; letter-spacing: -.04em; }
+    .subtitle { color: var(--muted); font-size: 14px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 24px; }
+    .date-pill { background: white; border: 1px solid var(--line); padding: 10px 14px; border-radius: 10px; font-size: 12px; color: var(--muted); }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 18px; }
+    .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 17px 19px; box-shadow: var(--shadow); }
+    .kpi-label { color: var(--muted); font-size: 12px; font-weight: 650; }
+    .kpi-value { display: flex; align-items: baseline; justify-content: space-between; margin-top: 7px; font-size: 30px; font-weight: 800; letter-spacing: -.05em; }
+    .kpi-delta { font-size: 11px; font-weight: 750; color: var(--teal); background: var(--mint); padding: 5px 7px; border-radius: 7px; letter-spacing: 0; }
+    .kpi.warn .kpi-delta { color: #875000; background: var(--amber-soft); }
+    .grid-2 { display: grid; grid-template-columns: 1.54fr .9fr; gap: 18px; }
+    .panel { background: white; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+    .panel-title { padding: 17px 19px 13px; display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:780; }
+    .panel-title span:last-child { color: var(--muted); font-size: 11px; font-weight: 650; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th { color: var(--muted); text-align: left; padding: 10px 16px; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; background: #f7f8f5; }
+    td { padding: 12px 16px; border-top: 1px solid #edf0eb; }
+    .person { display:flex; gap:10px; align-items:center; font-weight:720; }
+    .dot-avatar { width:27px; height:27px; border-radius:50%; background:#dce9e4; display:grid; place-items:center; font-size:10px; color:var(--green); }
+    .tag { display:inline-flex; padding:5px 8px; border-radius:999px; font-size:10px; font-weight:760; }
+    .tag.green { background:var(--mint); color:var(--teal); }
+    .tag.amber { background:var(--amber-soft); color:#875000; }
+    .tag.gray { background:#eef0ed; color:#66716e; }
+    .sources { padding: 2px 20px 17px; }
+    .source-row { display:grid; grid-template-columns:90px 1fr 34px; gap:10px; align-items:center; margin:15px 0; color:var(--muted); font-size:11px; }
+    .bar { height:9px; border-radius:999px; background:#edf0ec; overflow:hidden; }
+    .fill { height:100%; border-radius:999px; background:var(--teal); }
+    .funnel { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding: 6px 20px 20px; }
+    .funnel-step { padding:12px 8px; text-align:center; background:#f6f7f4; border-radius:10px; }
+    .funnel-step strong { display:block; font-size:19px; }
+    .funnel-step small { color:var(--muted); font-size:9px; text-transform:uppercase; letter-spacing:.06em; }
+
+    /* Workflow */
+    .workflow-bg { background:#eef2ee; }
+    .workflow-wrap { display:grid; grid-template-columns: 1fr 322px; height:822px; }
+    .canvas { padding: 30px 36px; position:relative; overflow:hidden; }
+    .canvas-head { display:flex; justify-content:space-between; align-items:center; }
+    .canvas h1 { font-size:27px; }
+    .status-live { display:flex; align-items:center; gap:8px; background:white; border:1px solid var(--line); border-radius:10px; padding:9px 12px; font-size:11px; font-weight:700; }
+    .status-live i { width:8px; height:8px; border-radius:50%; background:#21a776; box-shadow:0 0 0 4px rgba(33,167,118,.12); }
+    .flow-canvas { margin-top:20px; height:684px; background-image:radial-gradient(#cbd4ce 1px, transparent 1px); background-size:20px 20px; position:relative; }
+    .node { position:absolute; width:218px; min-height:103px; background:white; border:1px solid var(--line); border-radius:14px; box-shadow:0 14px 30px rgba(16,33,29,.08); padding:15px; z-index:2; }
+    .node .icon { width:29px; height:29px; border-radius:8px; display:grid; place-items:center; background:var(--mint); color:var(--teal); font-size:13px; font-weight:800; }
+    .node h3 { font-size:13px; margin:10px 0 4px; }
+    .node p { font-size:10px; color:var(--muted); margin:0; line-height:1.4; }
+    .node small { position:absolute; top:14px; right:14px; color:#24a274; font-size:9px; font-weight:800; }
+    .n1{left:12px;top:38px}.n2{left:300px;top:38px}.n3{left:590px;top:38px}
+    .n4{left:590px;top:238px}.n5{left:300px;top:238px}.n6{left:12px;top:238px}
+    .n7{left:300px;top:452px}.n8{left:590px;top:452px}
+    .connector { position:absolute; background:#91aaa1; z-index:1; }
+    .h1{left:230px;top:88px;width:70px;height:2px}.h2{left:518px;top:88px;width:72px;height:2px}
+    .v1{left:698px;top:142px;width:2px;height:96px}.h3{left:518px;top:288px;width:72px;height:2px}
+    .h4{left:230px;top:288px;width:70px;height:2px}.v2{left:120px;top:341px;width:2px;height:164px}
+    .h5{left:120px;top:504px;width:180px;height:2px}.h6{left:518px;top:504px;width:72px;height:2px}
+    .side { background:white; border-left:1px solid var(--line); padding:26px 24px; }
+    .side h2 { font-size:18px; letter-spacing:-.03em; margin:0 0 5px; }
+    .side .mini { font-size:11px; color:var(--muted); }
+    .lead-card { background:var(--green); color:white; border-radius:14px; margin:20px 0; padding:17px; }
+    .lead-card small { color:#abd1c6; font-size:9px; letter-spacing:.09em; text-transform:uppercase; }
+    .lead-card h3 { margin:7px 0 2px; font-size:18px; }
+    .lead-card p { color:#cfe1dc; font-size:11px; margin:0; }
+    .side-section { margin:21px 0; }
+    .side-section h4 { font-size:10px; color:var(--muted); letter-spacing:.09em; text-transform:uppercase; margin-bottom:11px; }
+    .check { display:flex; gap:10px; align-items:flex-start; margin:11px 0; font-size:11px; line-height:1.4; }
+    .check b { width:19px; height:19px; border-radius:50%; background:var(--mint); color:var(--teal); display:grid; place-items:center; font-size:10px; flex:0 0 auto; }
+    .message-box { padding:13px; background:#f6f7f4; border-radius:11px; font-size:10px; line-height:1.5; color:#3d4c47; border:1px solid #e9ece7; }
+
+    /* Report */
+    .report .content { padding-top:25px; }
+    .report-title { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; }
+    .report-title h1 { font-size:29px; }
+    .revenue-card { min-width:250px; background:var(--green); color:white; padding:15px 18px; border-radius:13px; }
+    .revenue-card small { display:block; color:#b6d3cb; font-size:9px; text-transform:uppercase; letter-spacing:.09em; }
+    .revenue-card strong { display:block; font-size:27px; margin-top:4px; letter-spacing:-.04em; }
+    .report-grid { display:grid; grid-template-columns:1.45fr .85fr; gap:17px; }
+    .chart { padding: 10px 22px 18px; height:270px; position:relative; }
+    .chart-area { height:204px; display:flex; align-items:flex-end; justify-content:space-around; border-bottom:1px solid #dfe5df; position:relative; }
+    .chart-area::before,.chart-area::after { content:""; position:absolute; left:0; right:0; height:1px; background:#edf0ec; }
+    .chart-area::before{top:68px}.chart-area::after{top:136px}
+    .week { width:80px; text-align:center; position:relative; z-index:2; }
+    .columns { height:170px; display:flex; gap:8px; align-items:flex-end; justify-content:center; }
+    .col { width:24px; border-radius:6px 6px 0 0; }
+    .col.a { background:#cddcd6; }.col.b { background:var(--teal); }
+    .week span { display:block; margin-top:8px; color:var(--muted); font-size:10px; }
+    .legend { display:flex; gap:16px; justify-content:flex-end; margin-top:12px; font-size:10px; color:var(--muted); }
+    .legend i { width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:5px; }
+    .summary-list { padding: 4px 19px 17px; }
+    .summary-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-top:1px solid #edf0eb; }
+    .summary-item:first-child { border-top:0; }
+    .summary-item div { font-size:11px; color:var(--muted); }
+    .summary-item strong { display:block; color:var(--ink); font-size:15px; margin-bottom:2px; }
+    .score { font-size:12px; font-weight:800; color:var(--teal); }
+    .bottom-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:17px; margin-top:17px; }
+    .action-list { padding:0 19px 14px; }
+    .action { display:grid; grid-template-columns:22px 1fr auto; gap:10px; align-items:start; padding:10px 0; border-top:1px solid #edf0eb; font-size:11px; }
+    .action:first-child{border-top:0}.num { width:20px;height:20px;border-radius:6px;background:var(--amber-soft);color:#875000;display:grid;place-items:center;font-weight:800;font-size:9px; }
+    .action p{margin:2px 0 0;color:var(--muted);font-size:10px}.impact{font-weight:800;color:var(--teal);font-size:9px;background:var(--mint);padding:5px 7px;border-radius:7px;}
+    .disclaimer { position:absolute; bottom:13px; left:44px; color:#7d8985; font-size:9px; }
+  </style>
+</head>
+<body>
+  <section class="screen" id="dashboard-overview">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">↗</div><div>Lead Recovery OS<small>NorthStar Service Co. · Demo</small></div></div>
+      <div class="top-actions"><span class="chip">● Automation healthy</span><span class="chip">Last sync 2 min ago</span><span class="avatar">NS</span></div>
+    </header>
+    <main class="content">
+      <div class="section-head">
+        <div><div class="eyebrow">Executive dashboard</div><h1>Every lead has a next action.</h1><div class="subtitle">30-day performance · Home services · Synthetic portfolio dataset</div></div>
+        <div class="date-pill">June 1–30, 2026 &nbsp; ▾</div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="kpi-label">Total leads captured</div><div class="kpi-value">184 <span class="kpi-delta">+18%</span></div></div>
+        <div class="kpi warn"><div class="kpi-label">At-risk leads detected</div><div class="kpi-value">52 <span class="kpi-delta">28.3%</span></div></div>
+        <div class="kpi"><div class="kpi-label">Conversations recovered</div><div class="kpi-value">31 <span class="kpi-delta">59.6%</span></div></div>
+        <div class="kpi"><div class="kpi-label">Bookings recovered</div><div class="kpi-value">14 <span class="kpi-delta">9 won</span></div></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">Recent recovery activity <span>View all 184 leads →</span></div>
+          <table>
+            <thead><tr><th>Lead</th><th>Service</th><th>Source</th><th>Stage</th><th>Next action</th></tr></thead>
+            <tbody>
+              <tr><td><div class="person"><span class="dot-avatar">JM</span>Jordan M.</div></td><td>AC repair</td><td>Google Ads</td><td><span class="tag green">Booked</span></td><td>Tomorrow · 9:00 AM</td></tr>
+              <tr><td><div class="person"><span class="dot-avatar">AK</span>Alex K.</div></td><td>Water heater</td><td>Organic</td><td><span class="tag amber">Replied</span></td><td>Owner call · 6 min</td></tr>
+              <tr><td><div class="person"><span class="dot-avatar">TS</span>Taylor S.</div></td><td>Drain service</td><td>Google LSA</td><td><span class="tag amber">Follow-up</span></td><td>Nudge · 1 hr 42 min</td></tr>
+              <tr><td><div class="person"><span class="dot-avatar">RB</span>Riley B.</div></td><td>HVAC quote</td><td>Referral</td><td><span class="tag gray">New</span></td><td>Assign owner</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Lead sources <span>Captured / recovered</span></div>
+          <div class="sources">
+            <div class="source-row"><span>Google Ads</span><div class="bar"><div class="fill" style="width:82%"></div></div><b>68</b></div>
+            <div class="source-row"><span>Organic</span><div class="bar"><div class="fill" style="width:61%"></div></div><b>51</b></div>
+            <div class="source-row"><span>Google LSA</span><div class="bar"><div class="fill" style="width:43%"></div></div><b>36</b></div>
+            <div class="source-row"><span>Referral</span><div class="bar"><div class="fill" style="width:35%"></div></div><b>29</b></div>
+          </div>
+          <div class="panel-title">Recovery funnel <span>At-risk cohort</span></div>
+          <div class="funnel"><div class="funnel-step"><strong>52</strong><small>Detected</small></div><div class="funnel-step"><strong>49</strong><small>Reached</small></div><div class="funnel-step"><strong>31</strong><small>Replied</small></div><div class="funnel-step"><strong>14</strong><small>Booked</small></div></div>
+        </div>
+      </div>
+      <div class="disclaimer">Portfolio demo · Fictional business and synthetic data · Not a claim of live client performance</div>
+    </main>
+  </section>
+
+  <section class="screen workflow-bg" id="automation-workflow">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">↗</div><div>Lead Recovery OS<small>Automation map · Demo</small></div></div>
+      <div class="top-actions"><span class="chip">Version 1.4</span><span class="chip">Test run passed</span><span class="avatar">MA</span></div>
+    </header>
+    <div class="workflow-wrap">
+      <main class="canvas">
+        <div class="canvas-head"><div><div class="eyebrow">Workflow builder</div><h1>Missed lead recovery · Home services</h1></div><div class="status-live"><i></i> ACTIVE · 184 RUNS</div></div>
+        <div class="flow-canvas">
+          <div class="connector h1"></div><div class="connector h2"></div><div class="connector v1"></div><div class="connector h3"></div><div class="connector h4"></div><div class="connector v2"></div><div class="connector h5"></div><div class="connector h6"></div>
+          <div class="node n1"><div class="icon">01</div><small>✓ HEALTHY</small><h3>Lead enters</h3><p>Form, tracked call, SMS, or shared inbox event.</p></div>
+          <div class="node n2"><div class="icon">02</div><small>✓ 184</small><h3>Validate + normalize</h3><p>Standardize contact data and reject invalid records.</p></div>
+          <div class="node n3"><div class="icon">03</div><small>✓ 177</small><h3>Deduplicate</h3><p>Match recent phone or email before creating a lead.</p></div>
+          <div class="node n4"><div class="icon">04</div><small>✓ &lt;2 MIN</small><h3>Instant acknowledgment</h3><p>Send approved message with reply and booking options.</p></div>
+          <div class="node n5"><div class="icon">05</div><small>52 AT RISK</small><h3>Response timer</h3><p>Check whether a human reply is logged within 10 minutes.</p></div>
+          <div class="node n6"><div class="icon">06</div><small>✓ ROUTED</small><h3>Owner alert</h3><p>Notify the assigned rep with context and next action.</p></div>
+          <div class="node n7"><div class="icon">07</div><small>31 REPLIES</small><h3>Follow-up sequence</h3><p>Helpful 2-hour and 24-hour nudges; stop on reply or opt-out.</p></div>
+          <div class="node n8"><div class="icon">08</div><small>14 BOOKED</small><h3>CRM + reporting</h3><p>Update stage, value, attribution, and weekly ROI summary.</p></div>
+        </div>
+      </main>
+      <aside class="side">
+        <h2>Run details</h2><div class="mini">Selected lead · LR-0184</div>
+        <div class="lead-card"><small>Current status</small><h3>Recovered · Booked</h3><p>AC repair · Google Ads · $850 est.</p></div>
+        <div class="side-section"><h4>Audit trail</h4>
+          <div class="check"><b>✓</b><span><strong>7:42:08 PM</strong><br>Form captured with campaign data</span></div>
+          <div class="check"><b>✓</b><span><strong>7:42:13 PM</strong><br>Acknowledgment delivered</span></div>
+          <div class="check"><b>✓</b><span><strong>7:53:01 PM</strong><br>At-risk timer triggered owner alert</span></div>
+          <div class="check"><b>✓</b><span><strong>8:16:44 PM</strong><br>Lead replied; automation stopped</span></div>
+          <div class="check"><b>✓</b><span><strong>8:21:09 PM</strong><br>Appointment booked</span></div>
+        </div>
+        <div class="side-section"><h4>Approved message</h4><div class="message-box">Thanks for contacting NorthStar about your AC repair. We received your request and can help. Reply with your ZIP code, or choose an available time here: [booking link]. Reply STOP to opt out.</div></div>
+        <div class="side-section"><h4>Safeguards</h4><div class="check"><b>✓</b><span>Reply and booking stop conditions</span></div><div class="check"><b>✓</b><span>Quiet hours and opt-out handling</span></div><div class="check"><b>✓</b><span>Failure alert and review queue</span></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="screen report" id="weekly-report">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">↗</div><div>Lead Recovery OS<small>Owner report · Demo</small></div></div>
+      <div class="top-actions"><span class="chip">Weekly email ready</span><span class="chip">Export PDF</span><span class="avatar">NS</span></div>
+    </header>
+    <main class="content">
+      <div class="report-title">
+        <div><div class="eyebrow">30-day owner report</div><h1>Recovery turned response speed into revenue.</h1><div class="subtitle">NorthStar Service Co. · June 1–30, 2026 · Synthetic portfolio dataset</div></div>
+        <div class="revenue-card"><small>Estimated recovered revenue</small><strong>$7,650</strong></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="kpi-label">Median first response</div><div class="kpi-value">1m 42s <span class="kpi-delta">−99.1%</span></div></div>
+        <div class="kpi"><div class="kpi-label">Recovery rate</div><div class="kpi-value">59.6% <span class="kpi-delta">31 / 52</span></div></div>
+        <div class="kpi"><div class="kpi-label">Recovered bookings</div><div class="kpi-value">14 <span class="kpi-delta">45.2%</span></div></div>
+        <div class="kpi"><div class="kpi-label">Recovered won jobs</div><div class="kpi-value">9 <span class="kpi-delta">$850 avg</span></div></div>
+      </div>
+      <div class="report-grid">
+        <div class="panel">
+          <div class="panel-title">Weekly at-risk leads vs. recovered conversations <span>Recovery improved each week</span></div>
+          <div class="chart"><div class="chart-area">
+            <div class="week"><div class="columns"><div class="col a" style="height:128px"></div><div class="col b" style="height:54px"></div></div><span>Week 1</span></div>
+            <div class="week"><div class="columns"><div class="col a" style="height:142px"></div><div class="col b" style="height:68px"></div></div><span>Week 2</span></div>
+            <div class="week"><div class="columns"><div class="col a" style="height:118px"></div><div class="col b" style="height:82px"></div></div><span>Week 3</span></div>
+            <div class="week"><div class="columns"><div class="col a" style="height:158px"></div><div class="col b" style="height:104px"></div></div><span>Week 4</span></div>
+          </div><div class="legend"><span><i style="background:#cddcd6"></i>At-risk</span><span><i style="background:#0f766e"></i>Recovered</span></div></div>
+        </div>
+        <div class="panel"><div class="panel-title">Source quality <span>Booking rate</span></div><div class="summary-list">
+          <div class="summary-item"><div><strong>Google LSA</strong>36 leads · 11 at risk</div><span class="score">50.0%</span></div>
+          <div class="summary-item"><div><strong>Referral</strong>29 leads · 6 at risk</div><span class="score">48.3%</span></div>
+          <div class="summary-item"><div><strong>Organic search</strong>51 leads · 14 at risk</div><span class="score">41.2%</span></div>
+          <div class="summary-item"><div><strong>Google Ads</strong>68 leads · 21 at risk</div><span class="score">35.3%</span></div>
+        </div></div>
+      </div>
+      <div class="bottom-grid">
+        <div class="panel"><div class="panel-title">Recommended actions <span>Next 7 days</span></div><div class="action-list">
+          <div class="action"><span class="num">1</span><div><strong>Add an evening owner rotation</strong><p>38% of at-risk inquiries arrived after 5:00 PM.</p></div><span class="impact">HIGH</span></div>
+          <div class="action"><span class="num">2</span><div><strong>Split AC repair from estimate follow-up</strong><p>Urgent repair leads reply faster to an availability-first message.</p></div><span class="impact">MED</span></div>
+          <div class="action"><span class="num">3</span><div><strong>Review Google Ads search terms</strong><p>Highest lead volume, but the lowest booking rate in this demo.</p></div><span class="impact">MED</span></div>
+        </div></div>
+        <div class="panel"><div class="panel-title">Data integrity <span>Healthy</span></div><div class="summary-list">
+          <div class="summary-item"><div><strong>96.2%</strong>Valid contact records</div><span class="score">✓</span></div>
+          <div class="summary-item"><div><strong>100%</strong>Records with source</div><span class="score">✓</span></div>
+          <div class="summary-item"><div><strong>3</strong>Failed sends reviewed</div><span class="score">Closed</span></div>
+        </div></div>
+      </div>
+      <div class="disclaimer">Portfolio demo · Fictional business and synthetic data · Revenue is modeled as 9 recovered won jobs × $850 average job value</div>
+    </main>
+  </section>
+</body>
+</html>
+
