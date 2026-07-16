@@ -133,13 +133,13 @@ function renderJourney() {
   runStatus.classList.add("running");
 
   const steps = [
-    ["Ad + landing page", "Google CPC attribution and click ID retained"],
-    ["GA4 / GTM", "generate_lead captured with shared identifiers"],
-    ["CRM", `${state.crm.owner} assigned · ${state.crm.stage}`],
-    ["AI qualification", `${state.qualification.band} · ${state.qualification.score}/100 · ${state.qualification.route}`],
-    ["Follow-up", state.crm.follow_up_status],
-    ["Booked call", state.crm.booked_at ? "Verified booking saved; sequence stopped" : "Waiting for booking"],
-    ["Revenue", state.crm.closed_revenue ? `$${state.crm.closed_revenue.toLocaleString("en-US")} closed and attributed` : "Waiting for closed-won outcome"]
+    ["Lead source remembered", "Google Ads · roofing_search_atlanta campaign"],
+    ["Conversion tracked", "The estimate request is recorded without sending contact details to analytics"],
+    ["CRM owner assigned", `${state.crm.owner} · Current stage: ${state.crm.stage}`],
+    ["Lead prioritized", `${state.qualification.band} · ${state.qualification.score}/100 · ${state.qualification.route}`],
+    ["Follow-up activated", state.crm.follow_up_status],
+    ["Appointment", state.crm.booked_at ? "Booking verified; unnecessary reminders stopped" : "Waiting for the customer to book"],
+    ["Closed revenue", state.crm.closed_revenue ? `$${state.crm.closed_revenue.toLocaleString("en-US")} connected to the original campaign` : "Waiting for the final sales outcome"]
   ];
 
   journeyList.innerHTML = steps.map(([title, detail], index) => {
