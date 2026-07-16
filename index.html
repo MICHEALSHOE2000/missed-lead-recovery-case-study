@@ -3,83 +3,162 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Interactive portfolio case study showing how an ad click becomes tracked revenue through GA4, GTM, CRM, AI qualification, follow-up, and booking." />
-    <title>Ad-to-Revenue System · Micheal Aderinto</title>
+    <meta name="description" content="A plain-English case study showing how home-service businesses can connect Google Ads, landing pages, tracking, CRM, AI lead qualification, follow-up, booked calls, and revenue." />
+    <title>Stop Losing Leads After the Click · Micheal Aderinto</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Ad-to-Revenue home">
         <span class="brand-mark">M</span>
-        <span>Micheal Aderinto<small>Growth systems case study</small></span>
+        <span>Micheal Aderinto<small>Ads · Tracking · Lead automation</small></span>
       </a>
       <nav aria-label="Main navigation">
-        <a href="#architecture">Architecture</a>
+        <a href="#problem">The problem</a>
+        <a href="#architecture">How it works</a>
+        <a href="#deliverables">What you get</a>
         <a href="#demo">Live demo</a>
-        <a href="#measurement">Measurement</a>
-        <a class="nav-cta" href="https://michealaderinto.netlify.app">Portfolio</a>
+        <a class="nav-cta" href="#audit">Free lead audit</a>
       </nav>
     </header>
 
     <main id="top">
       <section class="hero shell">
         <div class="hero-copy">
-          <div class="eyebrow"><span></span> End-to-end acquisition system</div>
-          <h1>Every ad click becomes a <em>tracked revenue opportunity.</em></h1>
-          <p class="hero-lede">A working portfolio demonstration of the complete journey from paid search to a landing page, GA4/GTM, CRM, guarded AI qualification, automated follow-up, a booked call, and closed revenue.</p>
+          <div class="eyebrow"><span></span> For local and home-service businesses</div>
+          <h1>You paid for the click. <em>Don’t lose the customer after it.</em></h1>
+          <p class="hero-lede">I build one connected system that brings in the lead, responds quickly, tells your team who to call first, books the appointment, and shows which advertising produced real revenue.</p>
+          <ul class="outcome-list">
+            <li><span>✓</span> Every new inquiry enters one organized pipeline</li>
+            <li><span>✓</span> Hot leads receive faster attention and follow-up</li>
+            <li><span>✓</span> The owner can trace the ad click to the booked job</li>
+          </ul>
           <div class="hero-actions">
-            <a class="button button-primary" href="#demo">Run the lead journey <span>→</span></a>
-            <a class="button button-ghost" href="#implementation">See implementation</a>
+            <a class="button button-primary" href="#architecture">See exactly how it works <span>→</span></a>
+            <a class="button button-ghost" href="#demo">Try the live demo</a>
           </div>
           <div class="trust-row">
-            <span>Google Ads</span><i></i><span>GA4 + GTM</span><i></i><span>CRM</span><i></i><span>AI workflow</span>
+            <span>Google Ads</span><i></i><span>Landing pages</span><i></i><span>GA4 + GTM</span><i></i><span>CRM + automation</span>
           </div>
         </div>
-        <aside class="hero-panel" aria-label="Modeled funnel overview">
-          <div class="panel-head">
-            <div><small>Modeled 30-day funnel</small><strong>NorthStar Exterior Services</strong></div>
+
+        <aside class="lead-story-card" aria-label="Example lead journey">
+          <div class="story-card-head">
+            <div><small>A simple example</small><strong>Jordan needs a new roof</strong></div>
             <span class="live-pill"><i></i> Demo</span>
           </div>
-          <div class="hero-metric"><small>Attributed closed revenue</small><strong>$18,700</strong><span>3.02× revenue / ad spend</span></div>
-          <div class="mini-funnel">
-            <div><span>Ad clicks</span><strong>1,240</strong><i style="--width:100%"></i></div>
-            <div><span>Landing-page leads</span><strong>92</strong><i style="--width:74%"></i></div>
-            <div><span>Qualified</span><strong>63</strong><i style="--width:57%"></i></div>
-            <div><span>Booked calls</span><strong>28</strong><i style="--width:39%"></i></div>
-            <div><span>Won jobs</span><strong>11</strong><i style="--width:24%"></i></div>
-          </div>
-          <p class="demo-note">Fictional company · Synthetic demonstration data · Not client results</p>
+          <div class="story-event"><time>8:42 PM</time><span class="event-dot search">01</span><div><strong>Jordan searches Google</strong><p>“roof replacement company near me”</p></div></div>
+          <div class="story-event"><time>8:44 PM</time><span class="event-dot capture">02</span><div><strong>Estimate request submitted</strong><p>The ad, service, timeline, and contact details stay attached.</p></div></div>
+          <div class="story-event"><time>8:44 PM</time><span class="event-dot qualify">03</span><div><strong>System marks the lead Hot</strong><p>The owner is alerted and an approved reply is queued.</p></div></div>
+          <div class="story-event"><time>8:51 PM</time><span class="event-dot book">04</span><div><strong>Estimate call booked</strong><p>Follow-up stops automatically because Jordan booked.</p></div></div>
+          <div class="story-result"><span>After the sales call</span><strong>$14,000 job marked Won</strong><p>The CRM connects the revenue back to the original Google campaign.</p></div>
+          <p class="demo-note">Fictional lead journey · Demonstration only · Not a client result</p>
         </aside>
+      </section>
+
+      <section class="problem-section" id="problem">
+        <div class="shell">
+          <div class="section-heading">
+            <div><div class="eyebrow"><span></span> The hidden revenue leak</div><h2>The ad may be working. The process after it may not be.</h2></div>
+            <p>Generating a lead is only the first half of the job. Slow replies, scattered records, inconsistent follow-up, and missing attribution can turn paid opportunities into silent losses.</p>
+          </div>
+          <div class="problem-grid">
+            <article><span>01</span><h3>“Where did this lead come from?”</h3><p>The phone rings or a form arrives, but nobody can connect it to the campaign, keyword, or landing page.</p></article>
+            <article><span>02</span><h3>“Who is following up?”</h3><p>Leads sit in personal phones and inboxes without an owner, response deadline, status, or next action.</p></article>
+            <article><span>03</span><h3>“Which lead should we call first?”</h3><p>A high-value urgent request receives the same treatment as a low-fit enquiry and intent cools down.</p></article>
+            <article><span>04</span><h3>“Did the ads make money?”</h3><p>The owner can see clicks and forms, but not appointments, quotes, closed jobs, or actual attributed revenue.</p></article>
+          </div>
+          <div class="leak-example">
+            <div><small>Illustrative monthly scenario</small><strong>20 enquiries</strong><span>generated by ads and the website</span></div>
+            <b>×</b>
+            <div><small>If 5 receive weak follow-up</small><strong>5 missed</strong><span>opportunities at risk</span></div>
+            <b>×</b>
+            <div><small>At $1,500 average value</small><strong>$7,500</strong><span>potential revenue at risk</span></div>
+            <p>Example only—not a promise or performance claim. The real audit uses the client’s own lead volume, close rate, and job value.</p>
+          </div>
+        </div>
       </section>
 
       <section class="architecture-section" id="architecture">
         <div class="shell">
           <div class="section-heading">
-            <div><div class="eyebrow"><span></span> The architecture</div><h2>One journey. Eight connected layers.</h2></div>
-            <p>The same lead ID and attribution data move forward at every step, so the owner can see which campaign produced a customer—not just a form fill.</p>
+            <div><div class="eyebrow"><span></span> What happens to every lead</div><h2>From “I need help” to “job won.”</h2></div>
+            <p>One lead ID follows the customer through the whole journey. That keeps the team organized and makes every result traceable to its original source.</p>
           </div>
-          <div class="architecture-grid" aria-label="Ad to revenue architecture">
-            <article><b>01</b><span class="arch-icon">AD</span><h3>Google Ad</h3><p>Intent-matched campaign with UTM and click ID.</p></article>
-            <article><b>02</b><span class="arch-icon">LP</span><h3>Landing page</h3><p>Focused offer, proof, CTA, and consented lead form.</p></article>
-            <article><b>03</b><span class="arch-icon">G4</span><h3>GA4 / GTM</h3><p>Event contract carries source and funnel progress.</p></article>
-            <article><b>04</b><span class="arch-icon">DB</span><h3>CRM</h3><p>One deduplicated record, owner, stage, and SLA.</p></article>
-            <article><b>05</b><span class="arch-icon">AI</span><h3>Qualification</h3><p>Auditable fit score, explanation, and sales route.</p></article>
-            <article><b>06</b><span class="arch-icon">FU</span><h3>Follow-up</h3><p>Fast approved replies with stop conditions.</p></article>
-            <article><b>07</b><span class="arch-icon">BK</span><h3>Booked call</h3><p>Verified booking updates CRM and analytics.</p></article>
-            <article><b>08</b><span class="arch-icon">$</span><h3>Revenue</h3><p>Closed-won value returns to the original source.</p></article>
+          <div class="architecture-grid" aria-label="Ad to revenue customer journey">
+            <article><b>01</b><span class="arch-icon">AD</span><h3>They search</h3><p>A high-intent Google Ad appears when the customer needs the service.</p><small>Business value: relevant traffic</small></article>
+            <article><b>02</b><span class="arch-icon">LP</span><h3>They trust the page</h3><p>A focused landing page answers their questions and makes requesting help easy.</p><small>Business value: more enquiries</small></article>
+            <article><b>03</b><span class="arch-icon">G4</span><h3>The source is remembered</h3><p>Tracking keeps the campaign, page, and conversion attached to the lead.</p><small>Business value: real attribution</small></article>
+            <article><b>04</b><span class="arch-icon">DB</span><h3>The team gets one record</h3><p>The CRM stores the customer, request, owner, stage, and next action.</p><small>Business value: no forgotten lead</small></article>
+            <article><b>05</b><span class="arch-icon">AI</span><h3>The lead is prioritized</h3><p>Approved business-fit details produce a Hot, Warm, or Cold recommendation.</p><small>Business value: call the best fit first</small></article>
+            <article><b>06</b><span class="arch-icon">FU</span><h3>Follow-up starts</h3><p>The customer receives a quick approved response while the owner is alerted.</p><small>Business value: faster response</small></article>
+            <article><b>07</b><span class="arch-icon">BK</span><h3>The appointment is booked</h3><p>A verified booking updates the CRM and stops unnecessary reminders.</p><small>Business value: more sales conversations</small></article>
+            <article><b>08</b><span class="arch-icon">$</span><h3>The sale closes the loop</h3><p>The final job value is recorded against the original campaign—not guessed.</p><small>Business value: know what made money</small></article>
+          </div>
+          <div class="owner-outcomes">
+            <div><strong>Faster response</strong><span>Every valid inquiry gets an immediate acknowledgement and an accountable owner.</span></div>
+            <div><strong>Cleaner sales process</strong><span>The team sees the lead’s stage, priority, last contact, and next action.</span></div>
+            <div><strong>Better ad decisions</strong><span>Budget can move toward campaigns that create qualified appointments and revenue.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="deliverables-section shell" id="deliverables">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span></span> What the client receives</div><h2>Not just ads. Not just a website. A complete lead system.</h2></div>
+          <p>Each part is connected, tested, and handed over in the client’s own accounts so the business keeps control of its data and assets.</p>
+        </div>
+        <div class="deliverables-layout">
+          <div class="deliverables-list">
+            <article><span>01</span><div><h3>Campaign and offer plan</h3><p>High-intent services, locations, keywords, ad groups, exclusions, and a clear conversion goal.</p></div></article>
+            <article><span>02</span><div><h3>Conversion-focused landing page</h3><p>Message match, trust proof, mobile calls to action, and a short lead form built around customer intent.</p></div></article>
+            <article><span>03</span><div><h3>GA4 and GTM conversion tracking</h3><p>Form, call, booking, and revenue events with source information retained through the journey.</p></div></article>
+            <article><span>04</span><div><h3>Organized CRM pipeline</h3><p>Lead owner, stage, priority, response time, next action, appointment, quote, outcome, and value.</p></div></article>
+            <article><span>05</span><div><h3>AI-assisted qualification</h3><p>Transparent scoring based on service fit, location, urgency, value, and contactability—with human review.</p></div></article>
+            <article><span>06</span><div><h3>Follow-up and booking workflow</h3><p>Approved messages, staff alerts, timed reminders, booking updates, opt-out rules, and stop conditions.</p></div></article>
+            <article><span>07</span><div><h3>Owner dashboard and weekly report</h3><p>Lead volume, response speed, qualified leads, bookings, closed jobs, revenue, and source quality.</p></div></article>
+            <article><span>08</span><div><h3>Testing, documentation, and training</h3><p>Dummy-lead testing, field checks, failure alerts, handoff documentation, and staff walkthrough.</p></div></article>
+          </div>
+          <aside class="ownership-card">
+            <div class="eyebrow"><span></span> You keep control</div>
+            <h3>Built inside the client’s accounts.</h3>
+            <ul>
+              <li><span>✓</span> Client owns and funds the Google Ads account</li>
+              <li><span>✓</span> Client owns the website, domain, CRM, and lead data</li>
+              <li><span>✓</span> Tracking and automation are documented</li>
+              <li><span>✓</span> Staff can see and override lead decisions</li>
+              <li><span>✓</span> No invented revenue or hidden reporting</li>
+            </ul>
+            <div class="ownership-result"><small>The outcome</small><strong>A repeatable system your team can operate—not a black box.</strong></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="process-section">
+        <div class="shell">
+          <div class="section-heading">
+            <div><div class="eyebrow"><span></span> How implementation works</div><h2>Audit first. Build second. Test before spending.</h2></div>
+            <p>The project begins by understanding the current lead journey and the biggest leak. Tools are selected after the process is clear.</p>
+          </div>
+          <div class="process-grid">
+            <article><span>1</span><h3>Map the current journey</h3><p>Review where leads arrive, who responds, what gets recorded, and where opportunities are being lost.</p></article>
+            <article><span>2</span><h3>Build in your accounts</h3><p>Connect the page, tracking, CRM, qualification, messaging, booking, and reporting layers.</p></article>
+            <article><span>3</span><h3>Test every path</h3><p>Run unique dummy leads through Hot, Warm, Cold, booking, opt-out, failure, and closed-won outcomes.</p></article>
+            <article><span>4</span><h3>Launch and improve</h3><p>Review real lead quality, response speed, bookings, revenue, and the next highest-impact improvement.</p></article>
           </div>
         </div>
       </section>
 
       <section class="demo-section shell" id="demo">
         <div class="section-heading">
-          <div><div class="eyebrow"><span></span> Interactive proof</div><h2>Run a lead through the system.</h2></div>
-          <p>This browser demo uses the same event names, CRM fields, score bands, routing rules, stop conditions, and revenue logic documented in the repository.</p>
+          <div><div class="eyebrow"><span></span> Try the system yourself</div><h2>Submit one lead and watch every step happen.</h2></div>
+          <p>Use the pre-filled fictional request. First create the lead, then simulate a booking, then mark the opportunity won. The CRM record and event log update as the customer moves forward.</p>
         </div>
+        <div class="demo-instructions"><span><b>1</b> Submit the estimate request</span><span><b>2</b> See the score and CRM route</span><span><b>3</b> Book and close the example job</span></div>
 
         <div class="demo-grid">
           <form class="lead-form" id="lead-form">
-            <div class="form-head"><span>02 · Landing page</span><strong>Request a free exterior estimate</strong><p>Ad: “Roof Replacement Atlanta · Financing Available”</p></div>
+            <div class="form-head"><span>Customer view · Landing page</span><strong>Request a free exterior estimate</strong><p>Ad: “Roof Replacement Atlanta · Financing Available”</p></div>
             <label>First name<input name="firstName" value="Jordan" autocomplete="given-name" required /></label>
             <div class="field-pair">
               <label>Email<input name="email" type="email" value="jordan@example.com" autocomplete="email" required /></label>
@@ -107,30 +186,29 @@
             </div>
             <label class="check"><input name="inServiceArea" type="checkbox" checked /><span>Property is inside the service area</span></label>
             <label class="check"><input name="consent" type="checkbox" checked required /><span>I agree to be contacted about this request.</span></label>
-            <button class="button button-primary form-submit" type="submit">Create and qualify lead <span>→</span></button>
-            <small class="privacy">Demo only. Data stays in this browser and is not transmitted.</small>
+            <button class="button button-primary form-submit" type="submit">Create and qualify this lead <span>→</span></button>
+            <small class="privacy">Demo only. Data stays inside this browser and is not transmitted.</small>
           </form>
 
           <div class="system-console" aria-live="polite">
             <div class="console-head">
-              <div><span>System run</span><strong id="run-id">Waiting for a lead</strong></div>
+              <div><span>Business view · Lead system</span><strong id="run-id">Waiting for a lead</strong></div>
               <span class="status-pill" id="run-status">Ready</span>
             </div>
             <div class="console-tabs" role="tablist" aria-label="System results">
-              <button class="active" type="button" data-tab="journey">Journey</button>
+              <button class="active" type="button" data-tab="journey">Plain-English journey</button>
               <button type="button" data-tab="crm">CRM record</button>
-              <button type="button" data-tab="events">Event log</button>
+              <button type="button" data-tab="events">Tracking events</button>
             </div>
-
             <div class="tab-panel active" data-panel="journey">
-              <div class="empty-state" id="empty-state"><span>→</span><strong>Submit the demo form</strong><p>The lead journey will appear here with qualification, routing, and controls to simulate booking and revenue.</p></div>
+              <div class="empty-state" id="empty-state"><span>→</span><strong>Start with the form on the left</strong><p>The business view will show where the lead came from, its qualification score, assigned owner, follow-up status, booking, and revenue.</p></div>
               <div class="journey" id="journey" hidden>
                 <ol id="journey-list"></ol>
                 <div class="qualification-card" id="qualification-card"></div>
                 <div class="console-actions">
-                  <button class="button button-primary" id="book-call" type="button">Simulate booked call</button>
-                  <button class="button button-secondary" id="mark-won" type="button" disabled>Mark opportunity won</button>
-                  <button class="text-button" id="reset-demo" type="button">Reset</button>
+                  <button class="button button-primary" id="book-call" type="button">Next: simulate booked call</button>
+                  <button class="button button-secondary" id="mark-won" type="button" disabled>Then: mark opportunity won</button>
+                  <button class="text-button" id="reset-demo" type="button">Reset demo</button>
                 </div>
               </div>
             </div>
@@ -143,39 +221,62 @@
       <section class="measurement-section" id="measurement">
         <div class="shell">
           <div class="section-heading light">
-            <div><div class="eyebrow"><span></span> Revenue measurement</div><h2>Performance is judged after the lead.</h2></div>
-            <p>Clicks and forms matter, but sales outcomes determine whether the system works. The reporting layer separates acquisition, qualification, booking, and closed revenue.</p>
+            <div><div class="eyebrow"><span></span> What the owner can finally answer</div><h2>Which marketing produced real business?</h2></div>
+            <p>The dashboard connects acquisition and sales activity. It shows more than clicks: lead quality, response, appointments, won jobs, and final revenue.</p>
+          </div>
+          <div class="owner-questions">
+            <span><b>1</b> Which ad produced the lead?</span><span><b>2</b> Was the lead a strong fit?</span><span><b>3</b> Did the team respond and book it?</span><span><b>4</b> How much revenue closed?</span>
           </div>
           <div class="metric-grid">
-            <article><small>Landing-page CVR</small><strong>7.42%</strong><span>92 leads / 1,240 clicks</span></article>
+            <article><small>Landing-page conversion</small><strong>7.42%</strong><span>92 leads / 1,240 clicks</span></article>
             <article><small>Qualified lead rate</small><strong>68.48%</strong><span>63 qualified / 92 leads</span></article>
             <article><small>Qualified → booked</small><strong>44.44%</strong><span>28 bookings / 63 qualified</span></article>
-            <article><small>Booking → win</small><strong>39.29%</strong><span>11 jobs / 28 bookings</span></article>
+            <article><small>Booking → won</small><strong>39.29%</strong><span>11 jobs / 28 bookings</span></article>
             <article class="accent"><small>Revenue / ad spend</small><strong>3.02×</strong><span>$18,700 / $6,200</span></article>
           </div>
           <div class="formula-row">
             <code>Closed revenue ÷ ad spend = revenue-to-spend ratio</code>
-            <span>All figures are synthetic and internally reconciled in <strong>data/sample-funnel.json</strong>.</span>
+            <span>Fictional 30-day model for demonstration. These are not live client results or guaranteed outcomes.</span>
           </div>
         </div>
       </section>
 
       <section class="implementation shell" id="implementation">
         <div class="section-heading">
-          <div><div class="eyebrow"><span></span> Implementation evidence</div><h2>Designed to survive real operations.</h2></div>
-            <p>The case study includes the contracts and safeguards needed to move from a portfolio demo into a real client implementation.</p>
+          <div><div class="eyebrow"><span></span> For technical reviewers</div><h2>The proof behind the presentation.</h2></div>
+          <p>The repository includes the event contract, CRM schema, qualification rules, safeguards, tests, and follow-up logic needed to implement the concept responsibly.</p>
         </div>
         <div class="evidence-grid">
           <article><span>01</span><h3>Tracking contract</h3><p>Nine named events, GTM mapping, identifiers, PII rules, and a QA checklist.</p><a href="docs/tracking-plan.md">Open tracking plan →</a></article>
           <article><span>02</span><h3>CRM data model</h3><p>Attribution, scoring, ownership, stages, booking, consent, and closed revenue fields.</p><a href="data/crm-schema.csv">Open CRM schema →</a></article>
-          <article><span>03</span><h3>AI guardrails</h3><p>Approved inputs, JSON output, prompt contract, deterministic fallback, and human review.</p><a href="docs/ai-qualification.md">Open qualification design →</a></article>
+          <article><span>03</span><h3>AI guardrails</h3><p>Approved inputs, JSON output, deterministic fallback, human review, and sensitive-field exclusions.</p><a href="docs/ai-qualification.md">Open qualification design →</a></article>
           <article><span>04</span><h3>Follow-up logic</h3><p>Response SLA, sequence timing, stop conditions, booking webhook, and close-out rules.</p><a href="docs/follow-up-playbook.md">Open playbook →</a></article>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <div class="shell faq-layout">
+          <div><div class="eyebrow"><span></span> Common client questions</div><h2>Clear answers before the first call.</h2><p>This is a flexible architecture. It can connect to an existing website and CRM or begin with a lean new setup.</p></div>
+          <div class="faq-list">
+            <details open><summary>Do we need to replace our current CRM?</summary><p>No. The workflow can often connect to the system already in use. A new CRM is recommended only when the existing process cannot support ownership, stages, follow-up, and reporting.</p></details>
+            <details><summary>Does AI talk to customers without our control?</summary><p>Not by default. AI helps summarize and prioritize approved business-fit information. Customer messages use reviewed templates, and staff can see, stop, or override the workflow.</p></details>
+            <details><summary>Can this work with leads outside Google Ads?</summary><p>Yes. Website forms, tracked calls, referrals, organic search, and approved messaging channels can enter the same organized pipeline.</p></details>
+            <details><summary>How is revenue connected to the original ad?</summary><p>The lead keeps a stable ID and source data. When an authorized user records a final won value, the system links that outcome back to the original campaign.</p></details>
+            <details><summary>Are the results on this page from a real client?</summary><p>No. The company, lead, and figures are clearly synthetic. They demonstrate the measurement method without pretending portfolio-demo numbers are verified client results.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="audit-section" id="audit">
+        <div class="shell audit-card">
+          <div><div class="eyebrow"><span></span> The safest first step</div><h2>Find the lead leak before buying more traffic.</h2><p>I can map how enquiries currently enter your business, how quickly they receive a response, what follow-up happens, and whether closed revenue can be traced to its source.</p></div>
+          <div class="audit-actions"><a class="button button-light" href="https://michealaderinto.netlify.app">Request a free lead-flow review <span>→</span></a><small>No account transfer required for the initial review.</small></div>
         </div>
       </section>
     </main>
 
     <footer>
-      <div class="shell"><div><strong>Micheal Aderinto</strong><span>Google Ads · GA4/GTM · Landing Pages · CRM · AI Automation</span></div><div><a href="https://github.com/MICHEALSHOE2000">GitHub</a><a href="https://michealaderinto.netlify.app">Portfolio</a></div></div>
+      <div class="shell"><div><strong>Micheal Aderinto</strong><span>Google Ads · Landing Pages · GA4/GTM · CRM · AI Workflow Automation</span></div><div><a href="https://github.com/MICHEALSHOE2000">GitHub</a><a href="https://michealaderinto.netlify.app">Portfolio</a></div></div>
     </footer>
     <script type="module" src="app.js"></script>
   </body>
