@@ -1,0 +1,22 @@
+{
+  "disclaimer": "Fictional company and synthetic portfolio data. These are demonstration figures, not client results.",
+  "company": "NorthStar Exterior Services",
+  "period": "30-day modeled scenario",
+  "currency": "USD",
+  "funnel": {
+    "ad_spend": 6200,
+    "ad_clicks": 1240,
+    "landing_page_leads": 92,
+    "qualified_leads": 63,
+    "booked_calls": 28,
+    "won_jobs": 11,
+    "closed_revenue": 18700
+  },
+  "derived": {
+    "landing_page_conversion_rate": 0.0742,
+    "qualification_rate": 0.6848,
+    "qualified_to_booking_rate": 0.4444,
+    "booking_to_win_rate": 0.3929,
+    "revenue_to_ad_spend_ratio": 3.0161
+  }
+}

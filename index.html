@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive portfolio case study showing how an ad click becomes tracked revenue through GA4, GTM, CRM, AI qualification, follow-up, and booking." />
+    <title>Ad-to-Revenue System · Micheal Aderinto</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Ad-to-Revenue home">
+        <span class="brand-mark">M</span>
+        <span>Micheal Aderinto<small>Growth systems case study</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#architecture">Architecture</a>
+        <a href="#demo">Live demo</a>
+        <a href="#measurement">Measurement</a>
+        <a class="nav-cta" href="https://michealaderinto.netlify.app">Portfolio</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> End-to-end acquisition system</div>
+          <h1>Every ad click becomes a <em>tracked revenue opportunity.</em></h1>
+          <p class="hero-lede">A working portfolio demonstration of the complete journey from paid search to a landing page, GA4/GTM, CRM, guarded AI qualification, automated follow-up, a booked call, and closed revenue.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#demo">Run the lead journey <span>→</span></a>
+            <a class="button button-ghost" href="#implementation">See implementation</a>
+          </div>
+          <div class="trust-row">
+            <span>Google Ads</span><i></i><span>GA4 + GTM</span><i></i><span>CRM</span><i></i><span>AI workflow</span>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Modeled funnel overview">
+          <div class="panel-head">
+            <div><small>Modeled 30-day funnel</small><strong>NorthStar Exterior Services</strong></div>
+            <span class="live-pill"><i></i> Demo</span>
+          </div>
+          <div class="hero-metric"><small>Attributed closed revenue</small><strong>$18,700</strong><span>3.02× revenue / ad spend</span></div>
+          <div class="mini-funnel">
+            <div><span>Ad clicks</span><strong>1,240</strong><i style="--width:100%"></i></div>
+            <div><span>Landing-page leads</span><strong>92</strong><i style="--width:74%"></i></div>
+            <div><span>Qualified</span><strong>63</strong><i style="--width:57%"></i></div>
+            <div><span>Booked calls</span><strong>28</strong><i style="--width:39%"></i></div>
+            <div><span>Won jobs</span><strong>11</strong><i style="--width:24%"></i></div>
+          </div>
+          <p class="demo-note">Fictional company · Synthetic demonstration data · Not client results</p>
+        </aside>
+      </section>
+
+      <section class="architecture-section" id="architecture">
+        <div class="shell">
+          <div class="section-heading">
+            <div><div class="eyebrow"><span></span> The architecture</div><h2>One journey. Eight connected layers.</h2></div>
+            <p>The same lead ID and attribution data move forward at every step, so the owner can see which campaign produced a customer—not just a form fill.</p>
+          </div>
+          <div class="architecture-grid" aria-label="Ad to revenue architecture">
+            <article><b>01</b><span class="arch-icon">AD</span><h3>Google Ad</h3><p>Intent-matched campaign with UTM and click ID.</p></article>
+            <article><b>02</b><span class="arch-icon">LP</span><h3>Landing page</h3><p>Focused offer, proof, CTA, and consented lead form.</p></article>
+            <article><b>03</b><span class="arch-icon">G4</span><h3>GA4 / GTM</h3><p>Event contract carries source and funnel progress.</p></article>
+            <article><b>04</b><span class="arch-icon">DB</span><h3>CRM</h3><p>One deduplicated record, owner, stage, and SLA.</p></article>
+            <article><b>05</b><span class="arch-icon">AI</span><h3>Qualification</h3><p>Auditable fit score, explanation, and sales route.</p></article>
+            <article><b>06</b><span class="arch-icon">FU</span><h3>Follow-up</h3><p>Fast approved replies with stop conditions.</p></article>
+            <article><b>07</b><span class="arch-icon">BK</span><h3>Booked call</h3><p>Verified booking updates CRM and analytics.</p></article>
+            <article><b>08</b><span class="arch-icon">$</span><h3>Revenue</h3><p>Closed-won value returns to the original source.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section shell" id="demo">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span></span> Interactive proof</div><h2>Run a lead through the system.</h2></div>
+          <p>This browser demo uses the same event names, CRM fields, score bands, routing rules, stop conditions, and revenue logic documented in the repository.</p>
+        </div>
+
+        <div class="demo-grid">
+          <form class="lead-form" id="lead-form">
+            <div class="form-head"><span>02 · Landing page</span><strong>Request a free exterior estimate</strong><p>Ad: “Roof Replacement Atlanta · Financing Available”</p></div>
+            <label>First name<input name="firstName" value="Jordan" autocomplete="given-name" required /></label>
+            <div class="field-pair">
+              <label>Email<input name="email" type="email" value="jordan@example.com" autocomplete="email" required /></label>
+              <label>Phone<input name="phone" value="+1 555 010 1000" autocomplete="tel" required /></label>
+            </div>
+            <label>Service
+              <select name="service">
+                <option value="roof-replacement">Roof replacement</option>
+                <option value="gutter-installation">Gutter installation</option>
+                <option value="roof-repair">Roof repair</option>
+                <option value="inspection">Inspection</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <div class="field-pair">
+              <label>Timeline
+                <select name="urgency">
+                  <option value="within-7-days">Within 7 days</option>
+                  <option value="within-30-days">Within 30 days</option>
+                  <option value="this-quarter">This quarter</option>
+                  <option value="researching">Researching</option>
+                </select>
+              </label>
+              <label>Estimated job value<input name="estimatedValue" type="number" min="0" step="100" value="14000" /></label>
+            </div>
+            <label class="check"><input name="inServiceArea" type="checkbox" checked /><span>Property is inside the service area</span></label>
+            <label class="check"><input name="consent" type="checkbox" checked required /><span>I agree to be contacted about this request.</span></label>
+            <button class="button button-primary form-submit" type="submit">Create and qualify lead <span>→</span></button>
+            <small class="privacy">Demo only. Data stays in this browser and is not transmitted.</small>
+          </form>
+
+          <div class="system-console" aria-live="polite">
+            <div class="console-head">
+              <div><span>System run</span><strong id="run-id">Waiting for a lead</strong></div>
+              <span class="status-pill" id="run-status">Ready</span>
+            </div>
+            <div class="console-tabs" role="tablist" aria-label="System results">
+              <button class="active" type="button" data-tab="journey">Journey</button>
+              <button type="button" data-tab="crm">CRM record</button>
+              <button type="button" data-tab="events">Event log</button>
+            </div>
+
+            <div class="tab-panel active" data-panel="journey">
+              <div class="empty-state" id="empty-state"><span>→</span><strong>Submit the demo form</strong><p>The lead journey will appear here with qualification, routing, and controls to simulate booking and revenue.</p></div>
+              <div class="journey" id="journey" hidden>
+                <ol id="journey-list"></ol>
+                <div class="qualification-card" id="qualification-card"></div>
+                <div class="console-actions">
+                  <button class="button button-primary" id="book-call" type="button">Simulate booked call</button>
+                  <button class="button button-secondary" id="mark-won" type="button" disabled>Mark opportunity won</button>
+                  <button class="text-button" id="reset-demo" type="button">Reset</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-panel" data-panel="crm"><pre id="crm-output">Submit the form to create a CRM record.</pre></div>
+            <div class="tab-panel" data-panel="events"><pre id="event-output">No events yet.</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="measurement-section" id="measurement">
+        <div class="shell">
+          <div class="section-heading light">
+            <div><div class="eyebrow"><span></span> Revenue measurement</div><h2>Performance is judged after the lead.</h2></div>
+            <p>Clicks and forms matter, but sales outcomes determine whether the system works. The reporting layer separates acquisition, qualification, booking, and closed revenue.</p>
+          </div>
+          <div class="metric-grid">
+            <article><small>Landing-page CVR</small><strong>7.42%</strong><span>92 leads / 1,240 clicks</span></article>
+            <article><small>Qualified lead rate</small><strong>68.48%</strong><span>63 qualified / 92 leads</span></article>
+            <article><small>Qualified → booked</small><strong>44.44%</strong><span>28 bookings / 63 qualified</span></article>
+            <article><small>Booking → win</small><strong>39.29%</strong><span>11 jobs / 28 bookings</span></article>
+            <article class="accent"><small>Revenue / ad spend</small><strong>3.02×</strong><span>$18,700 / $6,200</span></article>
+          </div>
+          <div class="formula-row">
+            <code>Closed revenue ÷ ad spend = revenue-to-spend ratio</code>
+            <span>All figures are synthetic and internally reconciled in <strong>data/sample-funnel.json</strong>.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation shell" id="implementation">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span></span> Implementation evidence</div><h2>Designed to survive real operations.</h2></div>
+            <p>The case study includes the contracts and safeguards needed to move from a portfolio demo into a real client implementation.</p>
+        </div>
+        <div class="evidence-grid">
+          <article><span>01</span><h3>Tracking contract</h3><p>Nine named events, GTM mapping, identifiers, PII rules, and a QA checklist.</p><a href="docs/tracking-plan.md">Open tracking plan →</a></article>
+          <article><span>02</span><h3>CRM data model</h3><p>Attribution, scoring, ownership, stages, booking, consent, and closed revenue fields.</p><a href="data/crm-schema.csv">Open CRM schema →</a></article>
+          <article><span>03</span><h3>AI guardrails</h3><p>Approved inputs, JSON output, prompt contract, deterministic fallback, and human review.</p><a href="docs/ai-qualification.md">Open qualification design →</a></article>
+          <article><span>04</span><h3>Follow-up logic</h3><p>Response SLA, sequence timing, stop conditions, booking webhook, and close-out rules.</p><a href="docs/follow-up-playbook.md">Open playbook →</a></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell"><div><strong>Micheal Aderinto</strong><span>Google Ads · GA4/GTM · Landing Pages · CRM · AI Automation</span></div><div><a href="https://github.com/MICHEALSHOE2000">GitHub</a><a href="https://michealaderinto.netlify.app">Portfolio</a></div></div>
+    </footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

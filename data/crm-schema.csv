@@ -1,0 +1,27 @@
+field,type,example,purpose
+lead_id,text,lead_0001,Stable identifier shared across analytics and CRM
+created_at,datetime,2026-07-16T08:00:00Z,Lead creation timestamp
+first_name,text,Jordan,Personalized follow-up
+email,email,jordan@example.com,Contact and deduplication
+phone,phone,+15550101000,Contact and deduplication
+service,single_select,roof-replacement,Service requested
+urgency,single_select,within-7-days,Qualification input
+estimated_value,currency,14000,Pipeline and revenue forecasting
+in_service_area,boolean,true,Operational fit
+utm_source,text,google,Acquisition attribution
+utm_medium,text,cpc,Acquisition attribution
+utm_campaign,text,roofing_search_atlanta,Campaign attribution
+gclid,text,demo-gclid,Google Ads click attribution
+landing_page,text,/atlanta-roof-replacement,Message-match audit
+qualification_score,number,100,Prioritization
+qualification_band,single_select,Hot,Sales queue routing
+qualification_reason,long_text,Urgent high-value in-area job,Transparent rationale
+owner,text,Senior estimator,Accountability
+stage,single_select,Booked Call,Pipeline management
+next_action,text,Prepare estimate call,Sales execution
+follow_up_status,single_select,Stopped - booked,Automation control
+booked_at,datetime,2026-07-16T08:08:00Z,Booking conversion timestamp
+closed_at,datetime,2026-07-18T14:20:00Z,Revenue timestamp
+closed_revenue,currency,18700,Closed-won revenue
+consent_status,single_select,granted,Communication compliance
+last_event_id,text,evt_0009,Idempotency and audit trail

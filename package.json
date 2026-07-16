@@ -1,0 +1,15 @@
+{
+  "name": "ad-to-revenue-case-study",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfolio case study: Ad to landing page to GA4/GTM to CRM to AI qualification to follow-up to booked call to revenue.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test",
+    "test:browser": "node scripts/qa-browser.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,203 +1,170 @@
-# Missed Lead Recovery System
+# Ad-to-Revenue Growth System
 
-> A conversion and follow-up system that helps USA local-service businesses respond to every inquiry, recover missed opportunities, and connect marketing activity to booked revenue.
+> A working portfolio case study demonstrating the complete architecture: **Ad → landing page → GA4/GTM → CRM → AI qualification → follow-up → booked call → revenue**.
 
-[![Project type](https://img.shields.io/badge/Project-Lead%20Automation-123A31)](#solution-architecture)
-[![Market](https://img.shields.io/badge/Market-USA%20Local%20Services-D97706)](#ideal-client)
-[![Status](https://img.shields.io/badge/Status-Portfolio%20Demo-0F766E)](#results--measurement)
+[![Google Ads](https://img.shields.io/badge/Acquisition-Google%20Ads-4285F4)](#the-exact-architecture)
+[![GA4 + GTM](https://img.shields.io/badge/Measurement-GA4%20%2B%20GTM-EA4335)](docs/tracking-plan.md)
+[![CRM](https://img.shields.io/badge/Operations-CRM-8B5CF6)](data/crm-schema.csv)
+[![AI workflow](https://img.shields.io/badge/Automation-AI%20Qualification-0F766E)](docs/ai-qualification.md)
+[![Tests](https://img.shields.io/badge/Tests-6%20passing-16A34A)](#run-locally)
 
 **Built by [Micheal Aderinto](https://github.com/MICHEALSHOE2000)** · [Portfolio](https://michealaderinto.netlify.app)
 
-![Lead recovery dashboard](assets/dashboard-overview.png)
+![Lead and revenue dashboard](assets/dashboard-overview.png)
 
-## Executive summary
+## What this demonstrates
 
-Local-service companies often pay for Google Ads, SEO, referrals, and website traffic but lose leads after the click. Calls go unanswered, forms wait in an inbox, source data disappears, and follow-up depends on someone remembering to do it.
+Most marketing portfolios stop at the ad or landing page. This repository demonstrates what happens after the form:
 
-I designed a **Missed Lead Recovery System** that captures inquiries from forms, calls, text, and email; creates one clean CRM record; sends a fast, helpful acknowledgment; alerts the right person; follows up until the lead replies or opts out; and reports which sources produce bookings and revenue.
+- preserve campaign, UTM, and click-ID attribution;
+- send clean, consented events through GTM to GA4;
+- create one deduplicated CRM record with an owner and response SLA;
+- qualify and route the lead using auditable business-fit inputs;
+- start fast follow-up with reply, booking, and opt-out stop conditions;
+- update CRM and analytics when a call is booked; and
+- connect closed-won revenue to the original acquisition source.
 
-This case study uses a **synthetic 30-day dataset for a fictional USA home-service company**. The workflow, screens, calculations, and implementation plan are real; the business name and performance figures are illustrative, not claims about a live client.
+The repository includes an **interactive browser demo**, executable qualification and tracking modules, automated tests, a complete CRM field dictionary, GA4/GTM event plan, AI output contract, follow-up playbook, and internally reconciled sample funnel data.
 
-### Demo result at a glance
+> **Credibility note:** NorthStar Exterior Services is fictional. All names, leads, and performance figures are synthetic demonstration data—not client results. The architecture and code are implementation-ready patterns.
 
-In the modeled 30-day scenario, the system identified **52 at-risk leads**, recovered **31 conversations**, produced **14 bookings**, and connected **9 won jobs** to an estimated **$7,650 in recovered revenue**. Median first response fell from **3 hours 18 minutes** to **1 minute 42 seconds**.
-
-## The business problem
-
-A growing home-service company can generate enough leads and still have a revenue leak:
-
-- Calls arrive while technicians are working or after business hours.
-- Website forms land in a shared inbox with no owner or deadline.
-- Staff copy lead details between tools, creating duplicates and gaps.
-- Prospects contact the next provider when the first response is slow.
-- Owners can see ad spend, but not which leads became appointments or revenue.
-
-The core problem is not simply “more leads.” It is **speed-to-lead, ownership, consistent follow-up, and attribution**.
-
-### Success criteria
-
-The system is designed to:
-
-1. acknowledge every valid inquiry in under two minutes;
-2. give every lead an owner, status, source, and next action;
-3. recover inquiries with no human response inside ten minutes;
-4. stop automation when a person replies, books, or opts out; and
-5. show recovered pipeline and revenue in a weekly report.
-
-## Solution architecture
+## The exact architecture
 
 ```mermaid
 flowchart TD
-    A[Website forms, calls, text and email] --> B[Capture and validate]
-    B --> C[Normalize and deduplicate]
-    C --> D[(Lead CRM)]
-    C --> E[Instant acknowledgment]
-    E --> F{Lead replies?}
-    F -- Yes --> G[Notify owner and offer booking]
-    F -- No --> H[Timed follow-up sequence]
-    G --> I[Pipeline and revenue report]
-    H --> I
-    D --> I
+    A["Google Ad"] --> B["Landing page"]
+    B --> C["GA4 + GTM"]
+    C --> D["CRM"]
+    D --> E["AI qualification"]
+    E --> F["Follow-up"]
+    F --> G["Booked call"]
+    G --> H["Closed revenue"]
+    H -. "offline outcome + original lead ID" .-> C
 ```
 
-### Example implementation stack
-
-The design is vendor-flexible. A typical small-business setup can use:
-
-| Layer | Lean implementation | Scalable alternative |
+| Layer | What happens | Proof in this repository |
 | --- | --- | --- |
-| Lead sources | Website form, tracked phone number, SMS, shared email | Multiple landing pages and location numbers |
-| Orchestration | Make or n8n | Custom API or managed automation |
-| CRM | Airtable or Google Sheets | HubSpot, GoHighLevel, or existing CRM |
-| Follow-up | Email + compliant business SMS | Omnichannel sequences with routing |
-| Booking | Calendly or CRM calendar | Dispatch/field-service scheduling tool |
-| Reporting | Airtable Interface or Looker Studio | CRM and ad-platform BI dashboard |
+| Ad | High-intent search campaign passes UTM values and `gclid` | Demo attribution object and sample dataset |
+| Landing page | Message-matched offer captures service, urgency, value, location fit, contact details, and consent | [`index.html`](index.html) |
+| GA4/GTM | Nine normalized funnel events retain `event_id`, `lead_id`, session, campaign, value, and currency | [`docs/tracking-plan.md`](docs/tracking-plan.md), [`implementation/tracking.js`](implementation/tracking.js) |
+| CRM | Idempotent lead record stores attribution, ownership, score, stage, next action, booking, and revenue | [`data/crm-schema.csv`](data/crm-schema.csv) |
+| AI qualification | Approved business inputs produce a score, band, route, explanation, and review flag | [`docs/ai-qualification.md`](docs/ai-qualification.md), [`implementation/qualification.js`](implementation/qualification.js) |
+| Follow-up | Confirmation, rep alert, timed sequence, quiet hours, and stop conditions reduce missed leads | [`docs/follow-up-playbook.md`](docs/follow-up-playbook.md) |
+| Booked call | Verified booking webhook updates the CRM, stops follow-up, and emits `booked_call` | Playbook and interactive demo |
+| Revenue | Authorized `Won` status emits final value through `closed_won` using the original lead attribution | Interactive demo and event contract |
 
-> Consent, quiet hours, opt-out handling, access controls, and message retention should be configured for the client's jurisdiction and communication channels before launch.
+## Interactive demonstration
 
-## Recovery workflow
+Open the site, submit the pre-filled lead, then select **Simulate booked call** and **Mark opportunity won**. The right-hand console exposes three views:
 
-![Automation workflow](assets/automation-workflow.png)
+1. the human-readable journey and AI score;
+2. the evolving CRM record; and
+3. every GTM-compatible event object in order.
 
-| Timing | System action | Business purpose |
-| --- | --- | --- |
-| 0–10 seconds | Validate the lead, standardize phone/email, attach UTM and source data, check for duplicates | Create one reliable customer record |
-| Under 2 minutes | Send a short acknowledgment with a booking or reply option | Confirm the inquiry was received while intent is high |
-| At 10 minutes | If no human response is logged, alert the assigned owner | Prevent silent lead loss |
-| At 2 hours | Send a useful, non-pushy follow-up | Restart the conversation without repeating the first message |
-| At 24 hours | Send a service-specific answer, proof point, or availability prompt | Reduce uncertainty and make replying easy |
-| At 3 days | Close the active sequence politely and keep the record for reporting | Protect the customer experience and staff time |
-| Every week | Email an owner summary of leads, response time, recovery, bookings, and source quality | Turn the workflow into a management system |
+The demo keeps data inside the browser. It does not send contact details to any server or analytics account.
 
-### Stop conditions and safeguards
+## Event lifecycle
 
-Automation stops immediately when the lead replies, books, is marked unqualified, or opts out. Invalid contacts go to a review queue. Failed sends create an alert instead of silently advancing. Every status change receives a timestamp so the report can be audited.
+| Order | Event | Trigger | Business meaning |
+| ---: | --- | --- | --- |
+| 1 | `ad_click` | Paid session begins | Campaign supplied the visit |
+| 2 | `landing_page_view` | Matched page loads | Visitor saw the correct offer |
+| 3 | `form_start` | First interaction | Visitor showed form intent |
+| 4 | `generate_lead` | Valid consented submission | Marketing conversion created |
+| 5 | `crm_lead_created` | CRM accepts the record | Sales now owns an auditable lead |
+| 6 | `qualification_complete` | Score and route saved | The right queue and SLA are selected |
+| 7 | `follow_up_started` | Approved sequence begins | Response system is active |
+| 8 | `booked_call` | Verified appointment created | Lead becomes a sales opportunity |
+| 9 | `closed_won` | Authorized user records the win | Final revenue is attributed |
 
-## CRM and reporting design
+Email, phone number, and free-text messages are deliberately excluded from analytics events.
 
-Each record contains the fields needed for action and attribution:
+## AI qualification with guardrails
 
-- lead ID, created time, contact details, and service requested;
-- original source, campaign, landing page, and tracked channel;
-- assigned owner, stage, last contact, and next action;
-- first-response time, automation status, and opt-out status;
-- appointment date, estimated value, won/lost status, and closed revenue.
+The demo uses a deterministic 100-point fallback so every decision is testable:
 
-![Weekly lead report](assets/weekly-report.png)
+| Factor | Maximum | Why it is allowed |
+| --- | ---: | --- |
+| Service fit | 30 | Matches work the business offers |
+| Urgency | 25 | Sets response priority |
+| Estimated value | 25 | Supports commercial routing |
+| Service-area fit | 15 | Confirms the job is operationally viable |
+| Contactability | 5 | Indicates whether follow-up is possible |
 
-## Results & measurement
+- **Hot:** 75–100 → priority sales queue
+- **Warm:** 50–74 → standard sales queue
+- **Cold:** below 50 → nurture or manual review
 
-### Illustrative 30-day demo outcomes
+An AI model may summarize the request and explain the route, but it receives only approved business-fit fields. Sensitive traits are prohibited. Ambiguous outputs and Cold leads remain reviewable by a person. See the [full AI design](docs/ai-qualification.md).
 
-The following numbers come from the synthetic dataset shown in the mockups. They demonstrate how I would calculate and report value once real client data is connected.
+## Modeled 30-day funnel
 
-| KPI | Modeled baseline | Demo run | Modeled impact |
-| --- | ---: | ---: | ---: |
-| Median first response | 3h 18m | 1m 42s | 99.1% faster |
-| At-risk leads receiving follow-up | 16 of 52 | 49 of 52 | +206% |
-| Recovered conversations | 8 | 31 | +288% |
-| Bookings from at-risk leads | 3 | 14 | +367% |
-| Won jobs from recovered leads | 3 | 9 | +6 jobs |
-| Estimated recovered revenue | $2,550 | $7,650 | +$5,100 |
+| KPI | Synthetic value | Calculation |
+| --- | ---: | --- |
+| Ad spend | $6,200 | Modeled input |
+| Ad clicks | 1,240 | Modeled input |
+| Landing-page leads | 92 | 7.42% of clicks |
+| Qualified leads | 63 | 68.48% of leads |
+| Booked calls | 28 | 44.44% of qualified leads |
+| Won jobs | 11 | 39.29% of booked calls |
+| Closed revenue | $18,700 | Sum of final won values |
+| Revenue / ad spend | 3.02× | $18,700 ÷ $6,200 |
 
-**Definitions**
+The source of truth is [`data/sample-funnel.json`](data/sample-funnel.json). Figures represent a fictional modeled scenario and must be replaced with verified exports for a real case study.
 
-- **At-risk lead:** no human response logged within ten minutes of inquiry.
-- **Recovered conversation:** an at-risk lead that replies after the recovery workflow starts.
-- **Recovered revenue:** closed revenue from a lead first classified as at risk.
-- **Estimated revenue:** won jobs × the demo average job value of $850.
+## Failure handling and controls
 
-For a real deployment, baseline performance would be measured before launch and compared with a defined post-launch window. Revenue would come from closed CRM records—not clicks, opens, or message replies.
+- repeated form/webhook events are reconciled by `event_id` and `lead_id`;
+- invalid contacts enter a review queue instead of disappearing;
+- AI output must match the JSON contract before CRM writeback;
+- the deterministic score remains available if the AI step fails;
+- automation stops on reply, booking, closed stage, or opt-out;
+- quiet hours and consent are configured for the client's channels and jurisdiction;
+- revenue uses the final CRM value, never the forecast; and
+- PII is kept out of GA4 and diagnostic event logs.
 
-### ROI model
+## Run locally
 
-```text
-Recovered revenue = recovered won jobs × average job value
-Net value         = recovered revenue − system and messaging cost
-ROI               = net value ÷ system and messaging cost
-```
-
-The model separates **pipeline**, **bookings**, and **closed revenue** so the owner can see genuine business value without inflating results.
-
-## Ideal client
-
-This system is a strong fit for USA businesses where one missed inquiry can be worth hundreds or thousands of dollars:
-
-- HVAC, plumbing, roofing, electrical, and restoration companies;
-- mobile mechanics, auto repair, detailing, and towing companies;
-- dental, med-spa, legal, and other appointment-led local services; and
-- multi-location businesses running paid search or local SEO.
-
-The best initial candidate already receives at least 30 monthly inquiries and currently relies on a shared inbox, personal phone, spreadsheet, or inconsistent manual follow-up.
-
-## What the client receives
-
-- lead-flow audit and missed-opportunity baseline;
-- source tracking for forms, calls, email, and approved messaging channels;
-- CRM pipeline with ownership, stages, and next actions;
-- recovery messages adapted to the client's services and voice;
-- automation with reply, booking, opt-out, and failure safeguards;
-- weekly KPI dashboard and owner summary; and
-- handoff documentation plus staff training.
-
-## Validation plan
-
-Before launch, I would test every source with unique dummy data, confirm field mapping and deduplication, verify response and stop conditions, simulate failed sends, confirm time-zone and quiet-hour behavior, check permissions, and reconcile a sample report against raw CRM records.
-
-After launch, I would review delivery failures daily for the first week and report response time, recovery rate, booking rate, source quality, and closed revenue weekly.
-
-## Repository contents
-
-```text
-missed-lead-recovery-case-study/
-├── README.md
-├── assets/
-│   ├── dashboard-overview.png
-│   ├── automation-workflow.png
-│   ├── weekly-report.png
-│   ├── dashboard-overview.svg
-│   ├── automation-workflow.svg
-│   ├── weekly-report.svg
-│   └── mockups.html
-└── scripts/
-    └── render-screenshots.mjs
-```
-
-The three PNG images are portfolio-ready mockups. The matching SVG files and `assets/mockups.html` provide editable source layouts, and the render script can regenerate consistent 1440 × 900 screenshots from the HTML version.
-
-### Regenerate the screenshots
+Requirements: Node.js 18 or newer. There are no third-party runtime dependencies.
 
 ```bash
-npm install playwright
-node scripts/render-screenshots.mjs
+npm test
+npm start
+```
+
+Then open `http://localhost:4173`.
+
+## Repository structure
+
+```text
+.
+├── index.html                         # Interactive case-study experience
+├── styles.css                        # Responsive presentation layer
+├── app.js                            # Browser journey and CRM simulation
+├── implementation/
+│   ├── tracking.js                   # GTM-compatible event builder
+│   └── qualification.js              # Auditable score and routing fallback
+├── tests/
+│   ├── tracking.test.js
+│   └── qualification.test.js
+├── docs/
+│   ├── tracking-plan.md              # GA4/GTM event and QA contract
+│   ├── ai-qualification.md           # AI prompt, schema, and safeguards
+│   └── follow-up-playbook.md         # SLA, sequence, booking, and close-out
+├── data/
+│   ├── crm-schema.csv                # CRM field dictionary
+│   └── sample-funnel.json            # Reconciled synthetic metrics
+├── assets/                           # Existing dashboard/workflow visuals
+├── package.json
+└── server.mjs
 ```
 
 ## My role
 
-For this portfolio project, I handled the business analysis, system design, CRM data model, recovery logic, KPI definitions, reporting structure, and presentation of the client-facing case study.
+I designed the acquisition journey, landing-page flow, measurement contract, CRM schema, qualification logic, routing, follow-up sequence, booking handoff, revenue attribution, tests, and client-facing presentation.
 
-## Next step
+## Work with me
 
-If your business is generating leads but losing track of calls, forms, or follow-up, I can map the current lead journey and identify the first recovery opportunity before recommending tools.
+I help local-service businesses connect advertising, conversion tracking, CRM follow-up, and AI workflow automation so owners can see which marketing activity produces booked work and revenue.
 
-**[View more of my work](https://michealaderinto.netlify.app)** · **[GitHub profile](https://github.com/MICHEALSHOE2000)**
+**[View my portfolio](https://michealaderinto.netlify.app)** · **[View my GitHub profile](https://github.com/MICHEALSHOE2000)**
