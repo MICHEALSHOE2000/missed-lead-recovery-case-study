@@ -61,3 +61,5 @@
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 .pf-foot .pf-name span{display:inline;font:inherit;color:var(--pf-blue)}
+.pf-case .chapters,.pf-case .chapters>section{min-width:0;grid-template-columns:minmax(0,1fr)}
+.pf-case .chapters{overflow-wrap:anywhere}
