@@ -8,7 +8,7 @@
 [![AI workflow](https://img.shields.io/badge/Automation-AI%20Qualification-0F766E)](docs/ai-qualification.md)
 [![Tests](https://img.shields.io/badge/Tests-6%20passing-16A34A)](#run-locally)
 
-**Built by [Micheal Aderinto](https://github.com/MICHEALSHOE2000)** · [Portfolio](https://michealaderinto.netlify.app)
+**Built by [Micheal Aderinto](https://github.com/MICHEALSHOE2000)** · [Portfolio](https://michealaderinto.vercel.app)
 
 ![Lead and revenue dashboard](assets/dashboard-overview.png)
 
@@ -167,4 +167,4 @@ I designed the acquisition journey, landing-page flow, measurement contract, CRM
 
 I help local-service businesses connect advertising, conversion tracking, CRM follow-up, and AI workflow automation so owners can see which marketing activity produces booked work and revenue.
 
-**[View my portfolio](https://michealaderinto.netlify.app)** · **[View my GitHub profile](https://github.com/MICHEALSHOE2000)**
+**[View my portfolio](https://michealaderinto.vercel.app)** · **[View my GitHub profile](https://github.com/MICHEALSHOE2000)**
