@@ -63,3 +63,37 @@
 .pf-foot .pf-name span{display:inline;font:inherit;color:var(--pf-blue)}
 .pf-case .chapters,.pf-case .chapters>section{min-width:0;grid-template-columns:minmax(0,1fr)}
 .pf-case .chapters{overflow-wrap:anywhere}
+
+/* Portfolio profile and project index */
+.profile-story,.profile-kit,.profile-index{padding-block:clamp(3rem,6vw,6rem)}
+.profile-story{display:grid;grid-template-columns:1fr 1.2fr;gap:7%;border-top:1px solid var(--pf-rule)}
+.profile-story i{font-family:Georgia,serif;font-weight:400;color:var(--pf-blue)}
+.profile-story p,.profile-kit dd{max-width:58ch}
+.profile-story div:last-child p:first-child{font:clamp(1.4rem,2.3vw,2.05rem)/1.28 Georgia,serif;margin-top:0}
+.profile-index{border-bottom:1px solid var(--pf-rule)}
+.profile-index h2{margin-bottom:2rem}
+.profile-index details{border-top:1px solid var(--pf-rule)}
+.profile-index details:last-child{border-bottom:1px solid var(--pf-rule)}
+.profile-index summary{cursor:pointer;display:grid;grid-template-columns:minmax(9rem,.38fr) 1fr auto;align-items:center;gap:1.25rem;padding:1.25rem .3rem;list-style:none}
+.profile-index summary::-webkit-details-marker{display:none}
+.profile-index summary span,.profile-kit dt{font:650 .87rem/1.5 ui-monospace,monospace;color:#414867}
+.profile-index summary strong{font-size:clamp(1.35rem,2.7vw,2.4rem);line-height:1.12;letter-spacing:-.045em}
+.profile-index summary::after{content:"+";color:var(--pf-blue);font-size:1.6rem}
+.profile-index details[open] summary::after{content:"−"}
+.profile-index details[open],.profile-index summary:hover{background:#edf0fb}
+.profile-index details div{padding:0 1rem 1.5rem clamp(1rem,26%,19rem);max-width:95ch}
+.profile-index details p{margin:0 0 .5rem}
+.profile-index a{color:var(--pf-blue)}
+.profile-kit dl{display:grid;grid-template-columns:minmax(10rem,.6fr) 1.4fr;margin:2rem 0}
+.profile-kit dt,.profile-kit dd{margin:0;border-top:1px solid var(--pf-rule);padding:1rem 0}
+.profile-kit aside{padding:1.5rem 2rem;border-left:3px solid var(--pf-blue);background:#e7e9fc}
+.profile-kit aside p{max-width:75ch;margin:.4rem 0}
+.profile-contact-link{display:inline-block;color:white;margin:.8rem;text-underline-offset:.3em}
+@media(max-width:700px){
+.profile-story,.profile-kit dl{grid-template-columns:1fr}
+.profile-story{gap:1.5rem}
+.profile-index summary{grid-template-columns:1fr auto;gap:.35rem}
+.profile-index summary span{grid-column:1/-1}
+.profile-index details div{padding-left:.3rem}
+.profile-kit dd{border:0;padding-top:0}
+}
