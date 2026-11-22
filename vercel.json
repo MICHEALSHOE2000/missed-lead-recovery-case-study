@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/index.html", "destination": "/lead-recovery/", "statusCode": 301 }
+  ]
+}

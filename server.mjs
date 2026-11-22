@@ -9,13 +9,15 @@ const types = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".jpg": "image/jpeg",
+  ".webp": "image/webp",
   ".png": "image/png",
   ".svg": "image/svg+xml"
 };
 
 createServer((request, response) => {
   const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
-  const requested = pathname === "/" ? "/index.html" : pathname;
+  const requested = pathname.endsWith("/") ? pathname + "index.html" : pathname;
   const safePath = normalize(requested).replace(/^(\.\.[/\\])+/, "");
   const file = join(root, safePath);
 

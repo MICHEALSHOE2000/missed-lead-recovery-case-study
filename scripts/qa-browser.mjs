@@ -12,13 +12,13 @@ try {
 }
 
 const { chromium } = playwright.default ?? playwright;
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_EXECUTABLE_PATH });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
 const errors = [];
 page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
 page.on("pageerror", (error) => errors.push(error.message));
 
-await page.goto(process.env.CASE_STUDY_URL || "http://localhost:4173", { waitUntil: "networkidle" });
+await page.goto(process.env.CASE_STUDY_URL || "http://localhost:4173/lead-recovery/", { waitUntil: "networkidle" });
 await page.screenshot({ path: "/tmp/ad-to-revenue-desktop.png", fullPage: true });
 
 await page.locator("#lead-form button[type=submit]").click();
@@ -37,7 +37,7 @@ assert.equal(errors.length, 0, `Browser errors: ${errors.join(" | ")}`);
 
 await page.screenshot({ path: "/tmp/ad-to-revenue-completed.png", fullPage: true });
 await page.setViewportSize({ width: 390, height: 844 });
-await page.goto(process.env.CASE_STUDY_URL || "http://localhost:4173", { waitUntil: "networkidle" });
+await page.goto(process.env.CASE_STUDY_URL || "http://localhost:4173/lead-recovery/", { waitUntil: "networkidle" });
 await page.screenshot({ path: "/tmp/ad-to-revenue-mobile.png", fullPage: true });
 await browser.close();
 
