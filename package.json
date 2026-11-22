@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server.mjs",
     "test": "node --test",
-    "test:browser": "node scripts/qa-browser.mjs"
+    "test:browser": "node scripts/qa-browser.mjs",
+    "dev": "node server.mjs"
   },
   "engines": {
     "node": ">=18"

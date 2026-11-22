@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mikee Gadget Plug Case Study · Micheal Aderinto</title>
+<meta name="description" content="Case study: designing, building and shipping a full e-commerce platform for a Lagos gadget retailer with Supabase, Vercel, Paystack and Credit Direct.">
+<link rel="canonical" href="https://michealaderinto.vercel.app/mikee-gadget-plug/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mikee Gadget Plug: E-commerce Case Study by Micheal Aderinto">
+<meta property="og:description" content="How I built a nationwide phone store for a Lagos retailer with Supabase, Vercel, Paystack, Credit Direct instalments and an AI sales assistant.">
+<meta property="og:url" content="https://michealaderinto.vercel.app/mikee-gadget-plug/">
+<meta property="og:image" content="https://michealaderinto.vercel.app/mikee-gadget-plug/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Micheal Aderinto">
+<style>
+/* Layout idea: a long-read case study on a 12-column grid; numbered chapters follow the brief's order,
+   with a sticky chapter index on wide screens. Palette borrows the client's own green and gold. */
+:root{
+  --paper:#F4F3EE;
+  --surface:#FFFFFF;
+  --ink:#121714;
+  --muted:#5B635E;
+  --line:#DCDDD5;
+  --green:#0F4E3B;
+  --gold:#A87A1E;
+  --gold-soft:#F3E7C8;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1311; --surface:#171C19; --ink:#ECEDE8; --muted:#A3AAA5; --line:#2A312D;
+    --green:#5FC49E; --gold:#E0B456; --gold-soft:#3A2F17; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1311; --surface:#171C19; --ink:#ECEDE8; --muted:#A3AAA5; --line:#2A312D;
+  --green:#5FC49E; --gold:#E0B456; --gold-soft:#3A2F17; color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--green);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(44px,7vw,88px);font-weight:800;letter-spacing:-.025em}
+h2{font-size:clamp(30px,3.6vw,44px);font-weight:700;letter-spacing:-.015em}
+h3{font-size:21px;font-weight:700;letter-spacing:-.005em}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{font:500 12.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.lede{font-size:clamp(19px,2vw,23px);line-height:1.5;color:var(--muted);max-width:42ch}
+.prose{max-width:66ch;display:grid;gap:16px}
+.prose p{color:var(--ink)}
+.muted{color:var(--muted)}
+
+/* Header */
+.top{padding:28px 0 0}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font:500 13px/1 var(--mono);color:var(--muted)}
+.hero{padding:64px 0 40px;display:grid;gap:28px}
+.hero h1 span{color:var(--gold)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:12px}
+.facts div{padding:18px 20px 18px 0;display:grid;gap:6px}
+.facts div+div{padding-left:20px;border-left:1px solid var(--line)}
+.facts dt{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:0;font-weight:500;font-size:15.5px;line-height:1.45}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+:root[data-theme="dark"] .btn.primary{color:#0F1311}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#0F1311}}
+
+/* Screens */
+.shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 30px 60px -30px rgba(18,23,20,.35)}
+.browser-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font:500 12px/1 var(--mono);color:var(--muted)}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.browser-bar span{margin-left:10px}
+figure{margin:0;display:grid;gap:12px}
+figcaption{font-size:14px;color:var(--muted);line-height:1.5}
+.phones{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.phone{border-radius:28px;overflow:hidden;border:6px solid var(--ink);background:var(--ink)}
+.phone img{border-radius:20px}
+
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.metric{background:var(--surface);padding:26px 24px;display:grid;gap:6px;align-content:start}
+.metric b{font:800 clamp(36px,4vw,50px)/1 var(--display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.metric span{font-size:15px;color:var(--muted);line-height:1.45}
+
+/* Chapters */
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;padding:72px 0 24px}
+.toc{position:sticky;top:24px;align-self:start;display:grid;gap:2px;font-size:14.5px}
+.toc a{display:grid;grid-template-columns:30px 1fr;padding:7px 0;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{color:var(--ink)}
+.toc a b{font:500 12px/1.9 var(--mono);color:var(--gold)}
+.chapters{display:grid;gap:96px}
+.chapter{display:grid;gap:28px;scroll-margin-top:24px}
+.chapter-head{display:grid;gap:12px}
+.num{font:500 13px/1 var(--mono);color:var(--gold)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;gap:8px;align-content:start}
+.card p{font-size:15.5px;color:var(--muted)}
+.card .tag{justify-self:start;font:500 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--gold-soft);color:var(--ink)}
+ul.ticks{list-style:none;padding:0;margin:0;display:grid;gap:10px;max-width:66ch}
+ul.ticks li{padding-left:28px;position:relative}
+ul.ticks li::before{content:"";position:absolute;left:2px;top:.62em;width:12px;height:7px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg) translateY(-3px)}
+.quote{border-left:3px solid var(--gold);padding:4px 0 4px 20px;font:500 20px/1.45 var(--display);max-width:52ch}
+
+/* Architecture diagram */
+.arch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;overflow-x:auto}
+.tier{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;min-width:640px}
+.tier>span{font:500 11.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nodes{display:flex;gap:10px;flex-wrap:wrap}
+.node{border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14.5px;line-height:1.35;background:var(--paper)}
+.node small{display:block;color:var(--muted);font-size:12.5px}
+.node.hl{border-color:var(--green)}
+.node.ext{border-style:dashed}
+.flow{min-width:640px;padding-left:166px;font:500 12px/1 var(--mono);color:var(--muted)}
+
+/* Payments table */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;font:500 11.5px/1 var(--mono);padding:5px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.pill.live{border-color:var(--green);color:var(--green)}
+.pill.wait{border-color:var(--gold);color:var(--gold)}
+
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:start}
+.ai-shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+
+.verify{margin:40px 0 0;padding:26px;border:1px dashed var(--line);border-radius:14px;display:grid;gap:10px;font-size:14.5px;color:var(--muted)}
+.verify h3{font-size:17px;color:var(--ink)}
+.closing{margin:96px 0 0;padding:64px 0 72px;border-top:1px solid var(--line);display:grid;gap:22px}
+.placeholder{background:var(--gold-soft);padding:1px 6px;border-radius:4px}
+
+@media (max-width:960px){
+  .layout{grid-template-columns:1fr;gap:0}
+  .toc{display:none}
+  .phones{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .split{grid-template-columns:1fr}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts div:nth-child(3){padding-left:0;border-left:0}
+  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cards{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .facts div,.facts div+div{padding:14px 0;border-left:0}
+  .facts div+div{border-top:1px solid var(--line)}
+  .chapters{gap:72px}
+}
+@media (max-width:400px){
+  .metrics{grid-template-columns:1fr}
+  .phones,.ai-shots{gap:12px}
+}
+</style>
+<link rel="stylesheet" href="/portfolio.css"></head>
+<body class="pf-case"><a class="pf-skip" href="#content">Skip to content</a><header class="pf-head"><div class="pf-inner"><a class="pf-name" href="/">Micheal Aderinto<span>.</span></a><nav aria-label="Portfolio"><a href="/#work">Work</a><a href="/#services">Skills</a><a href="/#contact">Contact</a></nav></div></section>
+
+<section id="content" class="wrap top">
+  <div class="topbar">
+    <a href="/" style="color:inherit">← Micheal Aderinto · All work</a>
+    <span>Case study · E-commerce · Lagos, Nigeria · 2026</span>
+  </div>
+  <div class="hero">
+    <p class="eyebrow">Case study by Micheal Aderinto · Full-stack e-commerce build</p>
+    <h1>Mikee Gadget Plug<span>.</span></h1>
+    <p class="lede">I turned a phone shop in Lagos's Computer Village into a nationwide online store, with three ways to pay, a trade-in calculator, an AI sales assistant and a store manager that non-technical staff can run.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://mikeegadget.com.ng" target="_blank" rel="noopener">Visit the live site ↗</a>
+      <a class="btn" href="https://github.com/MICHEALSHOE2000/mikeegagdget" target="_blank" rel="noopener">View the source on GitHub ↗</a>
+    </div>
+    <dl class="facts">
+      <div><dt>Role</dt><dd>Founder, product owner and lead developer</dd></div>
+      <div><dt>Timeline</dt><dd>Aug – Nov 2026, live and in active development</dd></div>
+      <div><dt>Stack</dt><dd>JavaScript (ES modules), Node build, Vercel, Supabase Postgres</dd></div>
+      <div><dt>Integrations</dt><dd>Paystack, Credit Direct, OpenAI, Google Merchant Center, TikTok Pixel</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="wrap" aria-label="Homepage screenshot">
+  <figure>
+    <div class="shot">
+      <div class="browser-bar"><i></i><i></i><i></i><span>mikeegadget.com.ng</span></div>
+      <img src="img/home-desktop.jpg" width="1800" height="806" alt="Mikee Gadget Plug homepage on desktop: headline 'Buy Genuine UK Used and Brand New Phones in Nigeria', a product search box, and a scrolling trust bar listing test-before-you-pay, free pickup, nationwide delivery and Paystack payment.">
+    </div>
+    <figcaption>Homepage at 1440px. A scrolling trust bar sits above the fold because the main obstacle to buying a used phone online is trust, not price.</figcaption>
+  </figure>
+</section>
+
+<section class="wrap" style="margin-top:56px" aria-label="Project at a glance">
+  <div class="metrics">
+    <div class="metric"><b>270</b><span>HTML pages generated per build from one product catalogue</span></div>
+    <div class="metric"><b>581</b><span>catalogue variants by model, storage, colour and condition</span></div>
+    <div class="metric"><b>199</b><span>automated tests, all passing on the production commit</span></div>
+    <div class="metric"><b>30</b><span>Postgres tables, every one with row-level security on</span></div>
+    <div class="metric"><b>3</b><span>ways to pay: Paystack card, Credit Direct instalments, bank transfer</span></div>
+    <div class="metric"><b>262</b><span>URLs in the sitemap, with structured data for Google Shopping</span></div>
+  </div>
+</section>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="Chapters">
+    <a href="#problem"><b>01</b>Business problem</a>
+    <a href="#role"><b>02</b>My responsibilities</a>
+    <a href="#architecture"><b>03</b>Technical architecture</a>
+    <a href="#frontend"><b>04</b>Frontend development</a>
+    <a href="#supabase"><b>05</b>Supabase</a>
+    <a href="#vercel"><b>06</b>Vercel</a>
+    <a href="#payments"><b>07</b>Payments</a>
+    <a href="#experience"><b>08</b>Customer experience</a>
+    <a href="#growth"><b>09</b>Marketing &amp; growth</a>
+    <a href="#outcome"><b>10</b>Outcome &amp; next</a>
+  </nav>
+
+  <main class="chapters">
+
+    <section class="chapter" id="problem">
+      <div class="chapter-head"><p class="num">01 / Business problem</p><h2>A trusted shop that only worked face to face.</h2></div>
+      <div class="prose">
+        <p>Mikee Gadget Plug sells UK-used and brand-new phones, laptops, tablets, watches and audio gear from a physical shop in Computer Village, Ikeja, one of West Africa's largest electronics markets. Before this project, sales came from people who visited the shop or messaged on WhatsApp. Prices lived in chat threads, so every buyer started the same back-and-forth.</p>
+        <p>Selling online in Nigeria meant solving problems a standard storefront template doesn't cover:</p>
+      </div>
+      <div class="cards">
+        <div class="card"><span class="tag">Trust</span><h3>Used phones carry risk</h3><p>Buyers worry about fake parts, swapped screens and weak batteries. The site had to earn the trust a shop counter gets for free.</p></div>
+        <div class="card"><span class="tag">Affordability</span><h3>Most buyers can't pay ₦1M+ at once</h3><p>Flagship phones cost more than many monthly salaries. Instalment plans and trade-ins decide whether a sale happens.</p></div>
+        <div class="card"><span class="tag">Logistics</span><h3>36 states, many delivery models</h3><p>Lagos gets doorstep delivery priced by local government area. Other states ship through transport parks. Some buyers want to collect in store.</p></div>
+        <div class="card"><span class="tag">Operations</span><h3>A non-technical team runs it</h3><p>Prices change daily with the market. The person updating them every day is not a developer, so the admin had to be plain and safe to use.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="role">
+      <div class="chapter-head"><p class="num">02 / My responsibilities</p><h2>From the business plan to the database.</h2></div>
+      <div class="prose"><p>I own the business and built its platform, so I made the product calls and handled the engineering. On an agency team, that maps to these roles:</p></div>
+      <ul class="ticks">
+        <li><strong>Product and UX.</strong> Defined the buying journeys (buy outright, Pay Small Small, swap and upgrade), the information architecture and the content.</li>
+        <li><strong>Frontend.</strong> Built a responsive storefront, product pages, cart, checkout, swap calculator and financing flow in modern JavaScript.</li>
+        <li><strong>Backend and data.</strong> Designed the Supabase schema, wrote 18 versioned SQL migrations, each with a rollback script, and built serverless APIs for checkout, payments and the admin.</li>
+        <li><strong>Payments.</strong> Integrated Paystack, Credit Direct and bank transfer, with server-side amount checks and signed webhooks.</li>
+        <li><strong>DevOps.</strong> Set up GitHub with a pull-request workflow, Vercel preview and production deploys, environment variables per environment, and a custom domain.</li>
+        <li><strong>Growth.</strong> Built SEO landing pages, structured data, a Google Merchant Center feed and TikTok Pixel event tracking.</li>
+      </ul>
+      <p class="quote">I wrote the specs and acceptance criteria, reviewed every change, tested it and approved every production release myself. I used AI pair-programmers (ChatGPT, then Claude) to move faster. No code reached customers until it passed the test suite and my review.</p>
+    </section>
+
+    <section class="chapter" id="architecture">
+      <div class="chapter-head"><p class="num">03 / Technical architecture</p><h2>Static-first speed, live data where it counts.</h2></div>
+      <div class="prose"><p>Many buyers in Nigeria shop on mid-range Android phones over mobile data, so speed came first. A Node build pipeline turns one product catalogue into hundreds of static HTML pages. These serve instantly from Vercel's CDN and stay readable with JavaScript turned off. Live data from the database is added only where it changes the decision, such as prices, deals and availability.</p></div>
+      <div class="arch" role="img" aria-label="Architecture: browser loads static pages from the Vercel CDN; Edge Middleware adds live prices and deals from Supabase; serverless functions handle checkout, payments, admin and the AI assistant; Supabase Postgres stores catalogue and orders; external services are Paystack, Credit Direct, OpenAI, Google Merchant Center and TikTok.">
+        <div class="tier"><span>Client</span><div class="nodes"><div class="node">Storefront, product pages, cart, checkout<small>Vanilla JS ES modules, no framework</small></div><div class="node">Store manager (admin)<small>Owner-only sign-in</small></div><div class="node">Mikee AI chat widget</div></div></div>
+        <div class="flow">↓ HTTPS</div>
+        <div class="tier"><span>Vercel edge</span><div class="nodes"><div class="node hl">CDN: 270 prebuilt pages<small>Generated by 9 Node build scripts</small></div><div class="node hl">Edge Middleware<small>Adds live prices, deals and JSON-LD; falls back to static after 2s</small></div></div></div>
+        <div class="flow">↓</div>
+        <div class="tier"><span>Serverless API</span><div class="nodes"><div class="node">/api/shop<small>catalogue · create · verify · webhook</small></div><div class="node">/api/admin<small>login · orders · prices · deals · images</small></div><div class="node">Assistant<small>OpenAI tool calls · WhatsApp prepared</small></div></div></div>
+        <div class="flow">↓ service role, server-side only</div>
+        <div class="tier"><span>Data</span><div class="nodes"><div class="node hl">Supabase Postgres<small>30 tables · RLS · RPC functions · audit log</small></div></div></div>
+        <div class="flow">↔</div>
+        <div class="tier"><span>External</span><div class="nodes"><div class="node ext">Paystack</div><div class="node ext">Credit Direct</div><div class="node ext">OpenAI</div><div class="node ext">Google Merchant Center</div><div class="node ext">TikTok Pixel</div></div></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Why no framework?</h3><p>The site is mostly content and forms. Prebuilt HTML with small ES modules sends less JavaScript than a single-page app, needs no hydration and keeps SEO simple. The build still gets the benefits of a component system through shared render functions.</p></div>
+        <div class="card"><h3>Built to fail safe</h3><p>If the database is slow, the Edge Middleware times out after 2 seconds and serves the prebuilt page. Shoppers always get a working store, and the prebuilt price is never more than one build old.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="frontend">
+      <div class="chapter-head"><p class="num">04 / Frontend development</p><h2>Designed for a phone in one hand.</h2></div>
+      <div class="prose"><p>Most traffic is mobile, so every journey was designed at 390px first. Phone layouts get a fixed bottom bar for Home, Shop, Categories, Cart and WhatsApp. Variant pickers show the price of each storage option on the button itself, so shoppers never have to guess.</p></div>
+      <div class="phones">
+        <figure><div class="phone"><img src="img/home-mobile.jpg" width="600" height="1108" loading="lazy" alt="Mobile homepage with headline, search and the bottom navigation bar."></div><figcaption>Home and search</figcaption></figure>
+        <figure><div class="phone"><img src="img/product-mobile.jpg" width="600" height="1108" loading="lazy" alt="Mobile product page for iPhone 16 Pro Max with storage options showing prices."></div><figcaption>Product and variants</figcaption></figure>
+        <figure><div class="phone"><img src="img/swap-mobile.jpg" width="600" height="1108" loading="lazy" alt="Swap calculator, step 1 of 5, asking which phone the customer wants to upgrade to."></div><figcaption>Five-step swap calculator</figcaption></figure>
+        <figure><div class="phone"><img src="img/checkout-mobile.jpg" width="600" height="1108" loading="lazy" alt="Checkout page showing delivery options, order summary and customer details form."></div><figcaption>Checkout</figcaption></figure>
+      </div>
+      <figure>
+        <div class="shot">
+          <div class="browser-bar"><i></i><i></i><i></i><span>mikeegadget.com.ng/iphone-16-pro-max/</span></div>
+          <img src="img/product-desktop.jpg" width="1800" height="1125" loading="lazy" alt="Desktop product page for iPhone 16 Pro Max, UK Used, ₦1,220,000, with storage buttons for 256GB, 512GB and 1TB and colour swatches.">
+        </div>
+        <figcaption>Product page. Colours are marked "to confirm for the exact unit" because used stock varies. The page avoids promising what the shop can't guarantee.</figcaption>
+      </figure>
+      <ul class="ticks">
+        <li>Search, filters (brand, UK Used or Brand New, category) and sorting across 14 categories</li>
+        <li>Cart, saved items and order tracking, with a customer account page</li>
+        <li>Checkout with Nigerian State → LGA selection, phone-number rules and email typo suggestions</li>
+        <li>Checked for horizontal overflow at 320, 375, 390, 430, 768 and 1440px, with skip links and visible focus states</li>
+        <li>Lazy-loaded imagery, explicit image cache headers and a WebM/MP4 hero video with a poster fallback</li>
+      </ul>
+    </section>
+
+    <section class="chapter" id="supabase">
+      <div class="chapter-head"><p class="num">05 / Supabase</p><h2>A database a retailer can trust with live money.</h2></div>
+      <div class="prose"><p>Supabase Postgres holds the catalogue, orders, payment events, delivery rates, deals, reviews and the AI assistant's conversations. The browser never gets privileged access. All writes go through server functions that hold the service key, and every table has row-level security switched on.</p></div>
+      <div class="cards">
+        <div class="card"><span class="tag">Schema</span><h3>30 tables, versioned</h3><p>Inventory with 603 sellable rows, orders and line items, payment and instalment events, 56 delivery rates across Lagos LGAs and states, and an admin audit log.</p></div>
+        <div class="card"><span class="tag">Change safety</span><h3>Migrations you can undo</h3><p>18 timestamped migrations. Each risky data change ships with a rollback SQL file and a backup table, so bulk price updates can be reversed in seconds.</p></div>
+        <div class="card"><span class="tag">Security</span><h3>Admin access checked on the server</h3><p>Admin access is checked against a confirmed identity on the server, never against user-editable metadata. Tests enforce this.</p></div>
+        <div class="card"><span class="tag">Logic in the database</span><h3>RPC functions</h3><p>Postgres functions handle atomic jobs such as marking an order paid, rate-limiting the AI assistant and tracking its spend against a monthly budget in naira.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="vercel">
+      <div class="chapter-head"><p class="num">06 / Vercel</p><h2>Ship small, preview everything, roll back fast.</h2></div>
+      <ul class="ticks">
+        <li><strong>Git-driven releases.</strong> Every feature lands on a branch, gets a preview URL and merges to <code>main</code> by pull request. The latest production release is PR #51.</li>
+        <li><strong>Quality gate.</strong> <code>npm run check</code> runs syntax checks on 84 modules, rebuilds every page, validates all internal links and tracking events, and then runs the test suite.</li>
+        <li><strong>Edge Middleware.</strong> Adds Hot Deals and live product data to the first HTML response, so Google and social previews see current prices.</li>
+        <li><strong>Serverless functions</strong> for checkout, payment verification, webhooks, admin and the assistant. Secrets are kept in separate Preview and Production environment variables.</li>
+        <li><strong>Custom domain</strong> mikeegadget.com.ng with www, SEO-safe 301 redirects for retired URLs, and instant rollback to any earlier deployment.</li>
+      </ul>
+    </section>
+
+    <section class="chapter" id="payments">
+      <div class="chapter-head"><p class="num">07 / Payment integrations</p><h2>Three ways to pay, one source of truth.</h2></div>
+      <div class="prose"><p>The server never trusts a price from the browser. Checkout recalculates the total from the database, and an order is marked paid only after the server verifies the payment provider's response.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Who it's for</th><th>How it's built</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Paystack</strong><br><span class="muted">Card, Verve, transfer</span></td><td>Buyers paying in full</td><td>Server creates the transaction from the database total. A webhook checks Paystack's HMAC-SHA512 signature with a timing-safe compare and rejects mismatched currency or reference.</td><td><span class="pill wait">Go-live review</span></td></tr>
+            <tr><td><strong>Credit Direct</strong><br><span class="muted">"Pay Small Small"</span></td><td>Buyers spreading the cost</td><td>Customers apply online from the product page. Sessions and events are logged in Supabase. Repayment schedules are tested to add up for every priced variant.</td><td><span class="pill live">Live</span></td></tr>
+            <tr><td><strong>Bank transfer</strong></td><td>Buyers who prefer direct transfer</td><td>Order reserved, bank details shown, customer confirms on WhatsApp, staff confirm in the store manager.</td><td><span class="pill live">Live</span></td></tr>
+            <tr><td><strong>Reserve, pay at pickup</strong></td><td>Lagos buyers who want to inspect first</td><td>Free store pickup that holds the device without online payment.</td><td><span class="pill live">Live</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:14.5px">Paystack's code path is complete and tested. Live card payments are waiting for Paystack to finish reviewing the business documents. I wrote the refund, privacy and terms pages Paystack asked for as part of that review.</p>
+    </section>
+
+    <section class="chapter" id="experience">
+      <div class="chapter-head"><p class="num">08 / Customer experience</p><h2>A salesperson that never closes.</h2></div>
+      <div class="split">
+        <div class="prose">
+          <p><strong>Mikee AI</strong> is a chat assistant that answers like the shop's best salesperson. It recommends phones from the live catalogue, explains UK Used versus Brand New, and works out a swap top-up from the customer's current phone and its condition.</p>
+          <p>It uses OpenAI function calling against the store's own data, so prices always come from the catalogue. They are never made up by the model.</p>
+          <p>Business rules come first. Any price negotiation goes to the owner. A Face ID fault triggers an in-store inspection instead of a quote. When a customer asks for a person, staff can reply from the admin, which pauses the AI for that chat.</p>
+          <p>Cost is controlled. A naira budget cap and a daily call limit switch it back to a scripted demo mode before spending can run away. Chats are deleted after 30 days, or after 180 days if the customer shares contact details.</p>
+        </div>
+        <div class="ai-shots">
+          <figure><div class="phone"><img src="img/ai-swap.jpg" width="600" height="1021" loading="lazy" alt="Mikee AI estimating a swap: an old phone is worth about ₦195,250, so upgrading to iPhone 15 Pro Max 256GB at ₦846,000 needs about ₦650,750 more."></div><figcaption>Swap estimate in chat</figcaption></figure>
+          <figure><div class="phone"><img src="img/ai-cards.jpg" width="600" height="1021" loading="lazy" alt="Mikee AI showing product cards with price, stock and a View product link."></div><figcaption>Live product cards</figcaption></figure>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Trust built into the interface</h3><p>The 7-day warranty, test before you pay, store address with directions, and a battery-health guide appear on every page. The fears behind abandoned carts are answered before checkout.</p></div>
+        <div class="card"><h3>Admin built for one non-technical user</h3><p>The store manager uses plain-language tabs for Orders, Reservations, Prices, Hot Deals, Photos, Reviews and Mikee AI. Bulk price changes are shown for confirmation before they go live.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="growth">
+      <div class="chapter-head"><p class="num">09 / Marketing &amp; business growth</p><h2>Built to be found, measured and sold through.</h2></div>
+      <div class="prose"><p>I built the store as a growth channel as well as a catalogue. Each feature answers a question a marketer would ask: how do people find us, what convinces them, and how do we know it worked?</p></div>
+      <div class="cards">
+        <div class="card"><span class="tag">SEO</span><h3>Pages that match real searches</h3><p>23 landing pages match local searches like "used iPhones Lagos" and "phones on installment". There are 125 product pages and a 262-URL sitemap. Product, Offer, FAQ and Breadcrumb structured data appears on 267 pages.</p></div>
+        <div class="card"><span class="tag">Shopping</span><h3>Google Merchant Center feed</h3><p>A product feed built from the same database as the site, with live price, availability, condition and delivery data. An admin report flags products that aren't eligible.</p></div>
+        <div class="card"><span class="tag">Measurement</span><h3>Tracking events that can't silently break</h3><p>TikTok Pixel events fire on key funnel steps. The build fails if a required tracking event goes missing from a landing page.</p></div>
+        <div class="card"><span class="tag">Merchandising</span><h3>Levers the owner can pull</h3><p>Admin-picked Hot Deals at 10% off with the old price crossed out, a rotating category showcase and featured new arrivals, all changed without a deploy.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="outcome">
+      <div class="chapter-head"><p class="num">10 / Outcome &amp; what's next</p><h2>A shop counter became a national storefront.</h2></div>
+      <ul class="ticks">
+        <li>Live at <a href="https://mikeegadget.com.ng" target="_blank" rel="noopener">mikeegadget.com.ng</a>, selling across 14 product categories with nationwide delivery and store pickup</li>
+        <li>Four ways to complete a purchase, including instalments, which are a must-have for this market</li>
+        <li>Daily price and deal updates handled by non-technical staff, with no developer needed</li>
+        <li>199 automated tests guarding the logic that handles money: pricing, instalments, swap values and payment verification</li>
+      </ul>
+      <p class="muted"><strong>Next:</strong> live Paystack card payments once the review clears, Google Shopping ads on top of the free listings, and Mikee AI on WhatsApp through the official Cloud API, for which the signed-webhook handler is already built.</p>
+      <div class="verify">
+        <h3>How these numbers were checked</h3>
+        <p>On 22 November 2026, every figure on this page was checked against primary sources: the Vercel production deployment, the Supabase project schema and the GitHub repository at production commit <code>3e7c552</code>. Tests and page counts come from running the build and test suite on that commit. Screenshots were rendered from the same commit, plus the assistant's own QA captures. Sales and traffic figures are left out on purpose. They will be added once there's enough data to report fairly.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<section class="wrap closing">
+  <p class="eyebrow">Available for remote and agency work</p>
+  <h2>I build stores that sell, not just stores that load.</h2>
+  <p class="lede">I'm looking for agencies and product teams that want a developer who can talk to the client about conversion and then build it.</p>
+  <div class="ctas">
+    <a class="btn primary" href="https://mikeegadget.com.ng" target="_blank" rel="noopener">See it live ↗</a>
+    <a class="btn" href="/lead-recovery/">See my other case study</a>
+    <a class="btn" href="mailto:aderintomicheal6@gmail.com">aderintomicheal6@gmail.com</a>
+    <a class="btn" href="https://www.linkedin.com/in/micheal-babatunde-085702382/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</section><footer class="pf-foot"><div class="pf-inner"><a class="pf-name" href="/">Micheal Aderinto<span>.</span></a><nav aria-label="Contact links"><a href="mailto:aderintomicheal6@gmail.com">Email</a><a href="https://www.linkedin.com/in/micheal-babatunde-085702382/">LinkedIn</a><a href="https://github.com/MICHEALSHOE2000">GitHub</a></nav></div></footer>
+
+</body>
+</html>
